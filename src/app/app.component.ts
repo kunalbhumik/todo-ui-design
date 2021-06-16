@@ -17,11 +17,7 @@ export class AppComponent {
 
   constructor(private taskService: TaskService , private http:HttpClient, private taskStore :TodoStore) {}
 
-  ngOnInit() {
-    /*this.taskService.getTaskCategories().subscribe(result => {
-      this.taskCategories = result;
-    });   */
-
+ 
     
   addTaskCategory(){
 

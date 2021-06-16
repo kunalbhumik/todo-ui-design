@@ -1,19 +1,20 @@
+<ng-container *ngIf="taskViewer$ | async as taskViewer">
 <mat-drawer-container fullscreen>
   <mat-drawer mode="side" opened>
     <mat-nav-list>
       <mat-list-item class="search-list-item">
         <mat-form-field appearance="outline" class="search-form-field">
           <mat-icon matPrefix>search</mat-icon>
-          <input matInput placeholder="Input" class="search-input" [(ngModel)]="nameSearch"/>
+          <input matInput placeholder="Input" class="search-input" [(ngModel)]="taskViewer.taskCategoryName"/>
         </mat-form-field>
       </mat-list-item>
 
-      <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskCategories, 'prop':'S'}">
+      <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategories, 'prop':'S'}">
       </ng-container>
     </mat-nav-list>
     <mat-divider></mat-divider>
     <mat-nav-list>
-      <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskCategories, 'prop':'C'}">
+      <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategories, 'prop':'C'}">
       </ng-container>
 
     </mat-nav-list>
@@ -22,7 +23,7 @@
     <div class="add-category">
       <button mat-icon-button class="add-button" (click)="addTaskCategory()"><mat-icon matPrefix>add</mat-icon></button>
     
-      <input matInput placeholder="Input" class="category-input" [(ngModel)]="taskCategory.name">
+      <input matInput placeholder="Input" class="category-input" [(ngModel)]="taskViewer.taskCategoryName">
       </div>
    
     
@@ -31,10 +32,10 @@
 
   </mat-drawer>
   <mat-drawer-content>
-    <app-todo-list [categoryId]="id" [categoryName]="name"></app-todo-list>
+    <app-todo-list [categoryId]="taskViewer.taskCategory.id" [categoryName]="taskViewer.taskCategory.name"></app-todo-list>
   </mat-drawer-content>
 </mat-drawer-container>
-
+</ng-container>
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
   <a mat-list-item *ngFor="let category of taskCategories | prop:prop  | filter:nameSearch" class="nav-list-item"
     (click)="saveCredentials(category.id,category.name)">

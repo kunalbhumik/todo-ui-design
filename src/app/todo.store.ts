@@ -11,36 +11,22 @@ import { TaskCategory } from './app.model';
 export class TodoStore{
   private taskViewrObservable = new BehaviorSubject<TaskViewerState>(INIT_TASKVIEWER_STATE);
   taskViewer$ = this.taskViewrObservable.asObservable();
-  constructor(private taskService:TaskService){}
+  constructor(private taskService:TaskService){
+    getTaskViewer();
+  }
 
   getTaskViewer(){
     
     const taskCategory=this.taskService.getBlankCategory();
 
-    let taskCategories : TaskCategory[] =[]
-    
+    let taskCategories : TaskCategory[] =Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]);
 
-
-    
-    this.taskService.getTaskCategories()
-    .pipe(
-      map(responseData=>{
-        
-        for(const key in responseData){
-        if(responseData.hasOwnProperty(key)){
-          taskCategories.push({...responseData[key],id:key});
-        }
-        }
-        return taskCategories;
-      })
-    )
-    .subscribe(categories => {
-      console.log(taskCategories);
-    })
-    
-
+    this.updateTaskViewer({taskCategories});
+     
   }
 
+  private updateTaskViewer( taskkViewerP: Partial<TaskViewerState> ){
+    this.taskViewrObservable.update({ ...this.taskViewrObservable.value, ... taskkViewerP})
   }
 
 }
