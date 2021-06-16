@@ -53,14 +53,14 @@ export class AppComponent {
 
    
     
-    console.log(this.taskCategory);
+    
     
     
 
     this.taskCategories = [...this.taskCategories,{...this.taskCategory , id:this.id}];
 
     this.taskService.postTaskCategory(this.taskCategory).subscribe(category => {
-      console.log(category);
+      
     })
 
     
