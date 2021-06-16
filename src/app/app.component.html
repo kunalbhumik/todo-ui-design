@@ -36,7 +36,7 @@
 </mat-drawer-container>
 
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
-  <a mat-list-item *ngFor="let category of taskCategories  | filter:nameSearch" class="nav-list-item"
+  <a mat-list-item *ngFor="let category of taskCategories | prop:prop  | filter:nameSearch" class="nav-list-item"
     (click)="saveCredentials(category.id,category.name)">
     <mat-icon matPrefix mat-list-icon [ngStyle]="{'color':category.icon.color}">
       {{category.icon.name}}
