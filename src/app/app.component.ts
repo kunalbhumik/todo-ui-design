@@ -15,26 +15,14 @@ export class AppComponent {
 
   taskViewer$ = this.taskStore.taskViewer$;
 
-  constructor(private taskService: TaskService , private http:HttpClient, private taskStore :TodoStore) {}
+  constructor( private taskStore :TodoStore) {}
 
  
     
   addTaskCategory(){
-
-    this.taskCategories = [...this.taskCategories,{...this.taskCategory , id:this.id}];
-
-    this.taskService.postTaskCategory(this.taskCategory).subscribe(category => {
-      
-    })
-
+    this.taskStore.addTaskCategory()
     
+}
 
-    
-    
-  }
-
-  saveCredentials(id: string, name: string) {
-    this.id = id;
-    this.name = name;
-  }
+  
 }
