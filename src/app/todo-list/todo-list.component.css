@@ -90,16 +90,7 @@ button.mat-menu-item {
   line-height: 30px;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    display: flex;
-    position: absolute;
-    top: .25em;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    border-radius: 10px;
-}
+
 
 .task-input{
   font-size: 20px;
@@ -121,23 +112,37 @@ mat-selection-list{
 }
 
 mat-list-option{
-  background-color: white;
-  margin: 5px;
+  background-color: #FAFAFA !important;
+  margin: 2px;
   border-radius: 5px;
   width: 1100px !important;
+  height: 45px !important;
 
 }
 
 .add-task-form-field{
   width: 1100px;
   padding-right: 15px;
+  
 }
 
+
+
+:host ::ng-deep input::-webkit-input-placeholder {
+    color: white !important;
+}
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  background-color: #9C27B0;
+    display: flex;
+    position: absolute;
+    top: .25em;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    
+    background-color: #9C27B0;
   border-radius: 5px;
 }
-
 
 
 

@@ -19,10 +19,7 @@ export class AppComponent {
 
   taskCategories: TaskCategory[] = [];
 
-  saveCredentials(id: string, name: string) {
-    this.id = id;
-    this.name = name;
-  }
+  
 
   constructor(private taskService: TaskService , private http:HttpClient) {}
 
@@ -47,15 +44,13 @@ export class AppComponent {
       console.log(this.taskCategories);
     })
     this.taskCategory=this.taskService.getBlankCategory();
+
+
+
+
   }
 
   addTaskCategory(){
-
-   
-    
-    
-    
-    
 
     this.taskCategories = [...this.taskCategories,{...this.taskCategory , id:this.id}];
 
@@ -63,6 +58,12 @@ export class AppComponent {
       
     })
 
+    this.saveCredentials("McEhWZzovHUTh5p8UMv","My Dayy");
     
+  }
+
+  saveCredentials(id: string, name: string) {
+    this.id = id;
+    this.name = name;
   }
 }

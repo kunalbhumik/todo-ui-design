@@ -19,11 +19,11 @@
     </mat-nav-list>
 
 
-    <a class="add-category">
+    <div class="add-category">
       <button mat-icon-button class="add-button" (click)="addTaskCategory()"><mat-icon matPrefix>add</mat-icon></button>
     
       <input matInput placeholder="Input" class="category-input" [(ngModel)]="taskCategory.name">
-      </a>
+      </div>
    
     
 
@@ -36,14 +36,14 @@
 </mat-drawer-container>
 
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
-  <a mat-list-item *ngFor="let category of taskCategories | prop:prop | filter:nameSearch" class="nav-list-item"
+  <a mat-list-item *ngFor="let category of taskCategories | prop:prop" class="nav-list-item"
     (click)="saveCredentials(category.id,category.name)">
     <mat-icon matPrefix mat-list-icon [ngStyle]="{'color':category.icon.color}">
       {{category.icon.name}}
     </mat-icon>
     <h4 mat-line>{{category.name}}</h4>
-
-    <h4 mat-subheader>{{category.id}}</h4>
+    
+    
 
   </a>
 </ng-template>
