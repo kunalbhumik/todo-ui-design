@@ -58,7 +58,10 @@ export class AppComponent {
       
     })
 
-    this.saveCredentials("McEhWZzovHUTh5p8UMv","My Dayy");
+    
+
+    this.id = "McEhWZzovHUTh5p8UMv";
+    this.name = "My Dayy";
     
   }
 
