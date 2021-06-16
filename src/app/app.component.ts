@@ -48,9 +48,8 @@ export class AppComponent {
     
 
 
-    //this.saveCredentials("-McEhWZzovHUTh5p8UMv","My Dayy");
-    this.id = this.taskCategories[0].id;
-    this.name=this.taskCategories[0].name;
+    this.saveCredentials("-McEhWZzovHUTh5p8UMv","My Dayy");
+    
 
   }
 
