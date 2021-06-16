@@ -60,7 +60,6 @@ button.mat-menu-item {
   height: auto;
 }
 
-
 .add-task {
   top: calc(100vh - 50px) !important;
   position: fixed !important;
@@ -74,7 +73,7 @@ button.mat-menu-item {
   justify-content: center;
 }
 
-.new-list{
+.new-list {
   display: flex;
   justify-content: center;
 }
@@ -84,66 +83,58 @@ button.mat-menu-item {
   padding: 0px;
 }
 
-.add-button{
+.add-button {
   width: 30px;
   height: 30px;
   line-height: 30px;
 }
 
-
-
-.task-input{
+.task-input {
   font-size: 20px;
   width: 800px;
 }
 
-.checkbox{
-    border: 0px;
-    padding: 0px;
-    margin-right: 10px;
-    height: 16px;
-    width: 15px;
+.checkbox {
+  border: 0px;
+  padding: 0px;
+  margin-right: 10px;
+  height: 16px;
+  width: 15px;
 }
-mat-selection-list{
+mat-selection-list {
   background-color: #ba68c8;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-mat-list-option{
-  background-color: #FAFAFA !important;
+mat-list-option {
+  background-color: #fafafa !important;
   margin: 2px;
   border-radius: 5px;
   width: 1100px !important;
   height: 45px !important;
-
 }
 
-.add-task-form-field{
+.add-task-form-field {
   width: 1100px;
-  padding-right: 15px;
-  
+  background: #AB47BC;
+  border-radius: 4px;
+  right: 10px;
 }
-
-
 
 :host ::ng-deep input::-webkit-input-placeholder {
-    color: white !important;
+  color: white !important;
 }
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    display: flex;
-    position: absolute;
-    top: .25em;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    
-    background-color: #9C27B0;
+  display: flex;
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+
+  /*background-color: #9C27B0;*/
   border-radius: 5px;
 }
-
-
-
-
