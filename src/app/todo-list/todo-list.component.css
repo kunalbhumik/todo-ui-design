@@ -1,0 +1,144 @@
+mat-toolbar-row {
+  height: 100px;
+  font-size: 35px;
+  background-color: #ba68c8;
+  color: white;
+}
+
+.icon-button {
+  width: 64px;
+  padding: 0px;
+  border-radius: 5px;
+  background-color: #e1bee7;
+  margin: 8px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.task-list {
+  border-radius: 10px;
+  border: #ba68c8;
+  border-style: outset;
+  background-color: white;
+  margin: 0px 10px;
+}
+
+mat-toolbar {
+  background-color: #ba68c8;
+}
+
+::ng-deep .mat-menu-panel {
+  min-width: 112px;
+  max-width: 280px;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 48px);
+  border-radius: 10px !important;
+  outline: 0;
+  min-height: 64px;
+  width: 400px;
+  height: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+mat-menu button:hover {
+  background-color: #64b5f6 !important;
+  color: white;
+}
+
+mat-menu button {
+  transition-duration: 0.8s;
+  line-height: 35px !important;
+  border-radius: 7px;
+}
+
+button.mat-menu-item {
+  width: 100%;
+  line-height: 35px;
+  height: auto;
+}
+
+
+.add-task {
+  top: calc(100vh - 50px) !important;
+  position: fixed !important;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  background-color: #ba68c8;
+  color: white;
+  font-size: 20px;
+  height: 48px;
+  justify-content: center;
+}
+
+.new-list{
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0px;
+  padding: 0px;
+}
+
+.add-button{
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    display: flex;
+    position: absolute;
+    top: .25em;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border-radius: 10px;
+}
+
+.task-input{
+  font-size: 20px;
+  width: 800px;
+}
+
+.checkbox{
+    border: 0px;
+    padding: 0px;
+    margin-right: 10px;
+    height: 16px;
+    width: 15px;
+}
+mat-selection-list{
+  background-color: #ba68c8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-list-option{
+  background-color: white;
+  margin: 5px;
+  border-radius: 5px;
+  width: 1100px !important;
+
+}
+
+.add-task-form-field{
+  width: 1100px;
+  padding-right: 15px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: #9C27B0;
+  border-radius: 5px;
+}
+
+
+
+
+

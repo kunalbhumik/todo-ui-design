@@ -1,0 +1,35 @@
+[
+  {
+    "name":"Rename List",
+    "icon":"volume_mute"
+  },
+  {
+    "name":"Move List to...",
+    "icon":"login"
+  },
+  {
+    "name":"Rename from Group",
+    "icon":"logout"
+  },
+  {
+    "name":"Sort",
+    "icon":"sort"
+  },
+  {
+    "name":"Change Theme...",
+    "icon":"color_lens"
+  },
+  {
+    "name":"Print List",
+    "icon":"print"
+  },
+  {
+    "name":"Show Completed Task",
+    "icon":"check_circle"
+  },
+  {
+    "name":"Delete List",
+    "icon":"delete"
+  }
+
+]

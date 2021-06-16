@@ -1,0 +1,51 @@
+<div *ngIf="categoryName">
+  <mat-toolbar>
+
+    <mat-toolbar-row>
+      <span>{{categoryName}}</span>
+      <span class="spacer"></span>
+      <button mat-button class="icon-button">
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+      </button>
+      <button mat-button [matMenuTriggerFor]="menuList" class="icon-button"  >
+        <mat-icon class="example-icon" aria-hidden="false">more_horiz</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+
+
+
+  </mat-toolbar>
+  <mat-menu #menuList="matMenu">
+
+    <ng-container *ngFor="let menu of menus">
+      <button mat-menu-item >
+        <mat-icon>{{menu.icon}}</mat-icon>{{menu.name}}</button>
+    </ng-container>
+
+
+  </mat-menu>
+</div>
+
+<mat-selection-list (selectionChange)="change($event)" class="test">
+  <ng-container *ngFor="let task of taskList">
+
+    <mat-list-option *ngIf="task.categoryId === categoryId" [checkboxPosition]="before" [value]="task.name">
+      <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
+        {{task.name}}
+      </div>
+    </mat-list-option>
+
+  </ng-container>
+</mat-selection-list>
+
+
+
+<div class="add-task">
+  
+    <mat-form-field appearance="outline" class="add-task-form-field">
+       <button mat-icon-button class="add-button" (click)="addTask()"><mat-icon matPrefix>add</mat-icon></button>
+      <input matInput class="task-input" [(ngModel)]="task.name"/>
+    </mat-form-field>
+
+ </div>

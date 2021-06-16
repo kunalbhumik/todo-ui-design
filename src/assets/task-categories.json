@@ -1,0 +1,74 @@
+[
+  {
+    "id": "id1",
+    "name": "Household",
+    "type": "C",
+    "icon": {
+      "name": "padding",
+      "color": "gray"
+    }
+  },
+  {
+    "id": "id2",
+    "name": "Personal",
+    "type": "C",
+    "icon": {
+      "name": "padding",
+      "color": "gray"
+    }
+  },
+  {
+    "id": "id3",
+    "name": "Work",
+    "type": "C",
+    "icon": {
+      "name": "padding",
+      "color": "gray"
+    }
+  },
+  {
+    "id": "id4",
+    "name": "My Day",
+    "type": "S",
+    "icon": {
+      "name": "brightness_low",
+      "color": "#66BB6A"
+    }
+  },
+  {
+    "id": "id5",
+    "name": "Important",
+    "type": "S",
+    "icon": {
+      "name": "star_border",
+      "color": "#F06292"
+    }
+  },
+  {
+    "id": "id6",
+    "name": "Planned",
+    "type": "S",
+    "icon": {
+      "name": "calendar_today",
+      "color": "#66BB6A"
+    }
+  },
+  {
+    "id": "id7",
+    "name": "Assigned To You",
+    "type": "S",
+    "icon": {
+      "name": "person_outline",
+      "color": "#66BB6A"
+    }
+  },
+  {
+    "id": "id8",
+    "name": "Tasks",
+    "type": "S",
+    "icon": {
+      "name": "home",
+      "color": "#42A5F5"
+    }
+  }
+]

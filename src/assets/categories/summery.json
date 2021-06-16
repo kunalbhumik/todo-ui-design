@@ -1,0 +1,29 @@
+[
+  {
+    "id": "id1",
+    "name": "Household",
+    "count": 5,
+    "icon":{ 
+      "name" : "padding",
+      "color" : "gray"
+    }
+  },
+  {
+    "id": "id2",
+    "name": "Personal",
+    "count": 4,
+    "icon":{ 
+      "name" : "padding",
+      "color" : "gray"
+    }
+  },
+  {
+    "id": "id3",
+    "name": "Work",
+    "count": 3,
+    "icon":{ 
+      "name" : "padding",
+      "color" : "gray"
+    }
+  }
+]
