@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuElement, Task, TaskCategory } from './app.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
   getTaskCategories() {
-    return this.http.get<TaskCategory[]>('assets/task-categories.json');
+   // return this.http.get<TaskCategory[]>('assets/task-categories.json');
+  return this.http.get('https://test-ba90f-default-rtdb.firebaseio.com/categories.json') ;
+    
   }
 
   getTaskList() {
