@@ -6,7 +6,11 @@ import {Pipe,PipeTransform} from '@angular/core'
 
 export class FilterPipe implements PipeTransform{
 
-  transform(value:any,searchTerm:any):any{
+  transform(value:any,searchTerm:string):any{
+    
+    if(value.length==0 || searchTerm.length  < 2){
+      return value;
+    }
     return value.filter(function(search){
       return search.name.indexOf(searchTerm) > -1
     })
