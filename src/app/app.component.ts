@@ -48,7 +48,7 @@ export class AppComponent {
     
 
 
-    this.saveCredentials("-McEhWZzovHUTh5p8UMv","My Dayy");
+    this.saveCredentials("-McEhWZzovHUTh5p8UMv","My Day");
     
 
   }
