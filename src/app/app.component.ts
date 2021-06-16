@@ -45,6 +45,8 @@ export class AppComponent {
     })
     this.taskCategory=this.taskService.getBlankCategory();
 
+    this.id = "McEhWZzovHUTh5p8UMv";
+    this.name = "My Dayy";
 
 
 
@@ -60,8 +62,7 @@ export class AppComponent {
 
     
 
-    this.id = "McEhWZzovHUTh5p8UMv";
-    this.name = "My Dayy";
+    
     
   }
 
