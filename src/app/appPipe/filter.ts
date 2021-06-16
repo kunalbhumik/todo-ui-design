@@ -1,4 +1,5 @@
 import {Pipe,PipeTransform} from '@angular/core'
+import { TaskCategory } from '../app.model';
 
 @Pipe({
   name:'filter'
@@ -6,16 +7,13 @@ import {Pipe,PipeTransform} from '@angular/core'
 
 export class FilterPipe implements PipeTransform{
 
-  transform(value:any,searchTerm:string):any{
-    
-    if(value.length==0 || searchTerm.length  < 2){
-      return value;
-    }
-    return value.filter(function(search){
-      return search.name.indexOf(searchTerm) > -1
-    })
-
-    
-  }
   
+    transform(items: TaskCategory[], filter: string): any {
+        if (!items || !filter) {
+            return items;
+        }
+        // filter items array, items which match and return true will be
+        // kept, false will be filtered out
+        return items.filter(item => item.name.indexOf(filter) > -1 );
+    }
 }
