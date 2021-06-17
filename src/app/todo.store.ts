@@ -57,5 +57,9 @@ export class TodoStore{
     })
   }
 
+  saveCredentials(categoryId:string,categoryName:string){
+      
+  }
+
 
 }

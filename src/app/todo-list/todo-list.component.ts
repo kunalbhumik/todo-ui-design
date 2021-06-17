@@ -26,7 +26,7 @@ export class TodoListComponent implements OnInit {
 
   task: Task ;
 
-  name:string=null;
+  
 
   status:boolean;
    
