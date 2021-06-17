@@ -19,9 +19,11 @@ export class TodoStore{
     
     const taskCategory=this.taskService.getBlankCategory();
 
-    let taskCategories : TaskCategory[] =Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]);
-
+    let taskCategories : TaskCategory[] = Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]);
+    
+    console.log(Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]));
     this.updateTaskViewer({taskCategories});
+    
      
   }
 
