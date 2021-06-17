@@ -13,9 +13,10 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
   getTaskCategories() {
-   // return this.http.get<TaskCategory[]>('assets/task-categories.json');
-  return this.http.get('https://test-ba90f-default-rtdb.firebaseio.com/categories.json') ;
-  console.log(this.http.get('https://test-ba90f-default-rtdb.firebaseio.com/categories.json'));
+    return this.http.get<TaskCategory[]>('assets/task-categories.json');
+   
+  //return this.http.get('https://test-ba90f-default-rtdb.firebaseio.com/categories.json') ;
+  
   }
 
   getTaskList() {

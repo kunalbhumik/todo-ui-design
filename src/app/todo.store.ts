@@ -17,11 +17,14 @@ export class TodoStore{
 
   getTaskViewer(){
     
-    const taskCategory=this.taskService.getBlankCategory();
-
-    let taskCategories : TaskCategory[] = Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]);
     
-    console.log(Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]));
+
+    let taskCategories : TaskCategory[] = []; 
+    //taskCategories = Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]);
+     this.taskService.getTaskCategories().subscribe(result => {
+      taskCategories =result;
+    });
+    console.log(taskCategories);
     this.updateTaskViewer({taskCategories});
     
      
@@ -31,7 +34,7 @@ export class TodoStore{
     this.taskViewrObservable.next({ ...this.taskViewrObservable.value, ... taskViewerP})
   }
   addTaskCategory(){
-
+    const taskCategory=this.taskService.getBlankCategory();
     const taskCategories = [...this.taskViewrObservable.value.taskCategories,{...this.taskViewrObservable.value.taskCategory , id:this.taskViewrObservable.value.taskCategory.id}];
 
     this.taskService.postTaskCategory(this.taskViewrObservable.value.taskCategory).subscribe(category => {
