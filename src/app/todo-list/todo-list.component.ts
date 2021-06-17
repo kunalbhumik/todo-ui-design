@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MenuElement, Task } from '../app.model';
 import { TaskService } from '../task.service';
@@ -13,6 +13,7 @@ import { TaskService } from '../task.service';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
+  @ViewChild('taskName') inputName;
   @Input()
   categoryId: string;
 
@@ -86,6 +87,7 @@ export class TodoListComponent implements OnInit {
       this.taskService.postTask(this.task).subscribe(result=>{
         console.log(result);
       });
+      this.inputName.nativeElement.value = ' ';
     }
 
    

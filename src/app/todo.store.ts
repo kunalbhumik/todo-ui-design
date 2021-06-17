@@ -21,17 +21,17 @@ export class TodoStore{
     const taskCategory=this.taskService.getBlankCategory();
     
     
-    var taskCategories : TaskCategory[] = []; 
-    //taskCategories = Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]);
+    let taskCategories : TaskCategory[] = []; 
+    taskCategories = Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]);
      
      
-     this.taskService.getTaskCategories().subscribe(result => {
+     /*this.taskService.getTaskCategories().subscribe(result => {
      taskCategories = result;
+      console.log(taskCategories);
       
-      
-    });
+    });*/
     
-    console.log(taskCategories);
+    
     
     this.updateTaskViewer({taskCategories});
     
