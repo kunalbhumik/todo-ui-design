@@ -4,11 +4,13 @@ import { TaskService } from "./task.service";
 import { INIT_TASKVIEWER_STATE, TaskViewerState } from "./task.state";
 import { TaskCategory } from './app.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class TodoStore{
+  
   private taskViewrObservable = new BehaviorSubject<TaskViewerState>(INIT_TASKVIEWER_STATE);
   taskViewer$ = this.taskViewrObservable.asObservable();
   constructor(private taskService:TaskService){
@@ -17,14 +19,18 @@ export class TodoStore{
 
   getTaskViewer(){
     
-    
-    const taskCategory=this.taskService.getBlankCategory();
-    
-    
     let taskCategories : TaskCategory[] = []; 
-    taskCategories = Object.entries( this.taskService.getTaskCategories()).map(e=>e[1]);
-     
-     
+    
+    
+    this.taskService.getTaskCategories()
+    .subscribe(tCategories => {
+      Object.entries(tCategories).forEach(e=> taskCategories.push(e[1]));
+    });
+    
+    
+    
+    
+     console.log(taskCategories);
      /*this.taskService.getTaskCategories().subscribe(result => {
      taskCategories = result;
       console.log(taskCategories);

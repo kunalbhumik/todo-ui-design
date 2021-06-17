@@ -29,7 +29,7 @@ export class TodoListComponent implements OnInit {
   name:string=null;
 
   status:boolean;
-   public show = true;
+   
 
   
 
