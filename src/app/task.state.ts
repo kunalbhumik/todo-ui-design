@@ -10,4 +10,5 @@ export const INIT_TASKVIEWER_STATE  = {
   taskCategoryName: '',
   taskCategory : {} as TaskCategory,
   taskCategories : [] as TaskCategory[]
+  
 };

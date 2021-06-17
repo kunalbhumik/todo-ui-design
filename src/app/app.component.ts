@@ -12,11 +12,11 @@ import { TodoStore } from './todo.store';
 })
 export class AppComponent {
   
+  
 
   taskViewer$ = this.taskStore.taskViewer$;
 
   constructor( private taskStore :TodoStore) {}
-
  
     
   addTaskCategory(){
