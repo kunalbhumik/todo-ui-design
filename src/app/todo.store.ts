@@ -49,16 +49,18 @@ export class TodoStore{
     this.taskViewrObservable.next({ ...this.taskViewrObservable.value, ... taskViewerP})
   }
   addTaskCategory(){
-    
-    const taskCategories = [...this.taskViewrObservable.value.taskCategories,{...this.taskViewrObservable.value.taskCategory , id:this.taskViewrObservable.value.taskCategory.id}];
+    let taskCategory : TaskCategory ;
+    taskCategory = this.taskService.getBlankCategory();
+    let taskCategories = [...taskCategories,{...taskCategory , name:}];
 
     this.taskService.postTaskCategory(this.taskViewrObservable.value.taskCategory).subscribe(category => {
       
     })
+    this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
   }
 
   saveCredentials(categoryId:string,categoryName:string){
-      
+      this.taskViewrObservable.next({})
   }
 
 
