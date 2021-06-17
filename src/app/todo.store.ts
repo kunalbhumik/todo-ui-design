@@ -25,12 +25,12 @@ export class TodoStore{
      
   }
 
-  private updateTaskViewer( taskkViewerP: Partial<TaskViewerState> ){
-    this.taskViewrObservable.next({ ...this.taskViewrObservable.value, ... taskkViewerP})
+  private updateTaskViewer( taskViewerP: Partial<TaskViewerState> ){
+    this.taskViewrObservable.next({ ...this.taskViewrObservable.value, ... taskViewerP})
   }
   addTaskCategory(){
 
-    const taskCategories = [...this.taskViewrObservable.value.taskCategories,{...this.taskViewrObservable.value.taskCategory.id , id:this.id}];
+    const taskCategories = [...this.taskViewrObservable.value.taskCategories,{...this.taskViewrObservable.value.taskCategory , id:this.taskViewrObservable.value.taskCategory.id}];
 
     this.taskService.postTaskCategory(this.taskViewrObservable.value.taskCategory).subscribe(category => {
       
