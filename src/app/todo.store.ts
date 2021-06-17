@@ -49,9 +49,9 @@ export class TodoStore{
     this.taskViewrObservable.next({ ...this.taskViewrObservable.value, ... taskViewerP})
   }
   addTaskCategory(){
-    let taskCategory : TaskCategory ;
+    var taskCategory : TaskCategory ;
     taskCategory = this.taskService.getBlankCategory();
-    let taskCategories = [...taskCategories,{...taskCategory , name:}];
+    let taskCategories = [...taskCategories,{...taskCategory , name:taskCategory.name}];
 
     this.taskService.postTaskCategory(this.taskViewrObservable.value.taskCategory).subscribe(category => {
       
