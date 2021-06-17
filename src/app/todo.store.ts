@@ -32,7 +32,7 @@ export class TodoStore{
 
     const taskCategories = [...this.taskViewrObservable.value.taskCategories,{...this.taskViewrObservable.value.taskCategory.id , id:this.id}];
 
-    this.taskService.postTaskCategory(this.taskCategory).subscribe(category => {
+    this.taskService.postTaskCategory(this.taskViewrObservable.value.taskCategory).subscribe(category => {
       
     })
   }
