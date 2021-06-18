@@ -45,18 +45,21 @@ export class TodoStore{
      
   }
 
-  private updateTaskViewer( taskViewerP: Partial<TaskViewerState> ){
+  public updateTaskViewer( taskViewerP: Partial<TaskViewerState> ){
     this.taskViewrObservable.next({ ...this.taskViewrObservable.value, ... taskViewerP})
   }
+
+
   addTaskCategory(){
-    var taskCategory : TaskCategory ;
-    taskCategory = this.taskService.getBlankCategory();
-    let taskCategories = [...taskCategories,{...taskCategory , name:taskCategory.name}];
+    var taskCategory : TaskCategory =this.taskService.getBlankCategory();
+   
+    
+    //let taskCategories = [...taskCategories,{...taskCategory , name:taskCategory.name}];
 
     this.taskService.postTaskCategory(this.taskViewrObservable.value.taskCategory).subscribe(category => {
       
     })
-    this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
+    
   }
 
   saveCredentials(categoryId:string,categoryName:string){

@@ -36,11 +36,13 @@
       <app-todo-list [categoryId]="taskViewer.taskCategory.id" [categoryName]="taskViewer.taskCategory.name">
       </app-todo-list>
     </mat-drawer-content>
+
+
   </mat-drawer-container>
 </ng-container>
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
   <a mat-list-item *ngFor="let category of taskCategories | prop:prop" class="nav-list-item"
-    (click)="saveCredentials(category.id,category.name)">
+    (click)="saveCredentials(category)">
     <mat-icon matPrefix mat-list-icon [ngStyle]="{'color':category.icon.color}">
       {{category.icon.name}}
     </mat-icon>

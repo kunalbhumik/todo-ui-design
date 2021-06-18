@@ -23,8 +23,8 @@ export class AppComponent {
     this.taskStore.addTaskCategory()
     
 }
-  saveCredentials(categoryId:string,categoryName:string){
-    this.taskStore.saveCredentials(categoryId,categoryName);
+  saveCredentials(taskCategory :TaskCategory){
+    this.taskStore.updateTaskViewer({taskCategory:taskCategory});
   }
 
   
