@@ -38,10 +38,6 @@ export class TodoListComponent{
 
    
   change(event){
-   this.taskList.forEach(item => {
-     if(item.name === event.option.value){
-       item.status = !item.status;
-     }
-   });
+   this.taskStore.change(event);
   }
 }

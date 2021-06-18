@@ -1,63 +1,52 @@
-import { MenuElement, TaskCategory,Task } from "./app.model";
+import { MenuElement, TaskCategory, Task } from './app.model';
 
-
-export interface TaskViewerState{
-  taskCategoryName:string;
-  taskCategory:TaskCategory;
-  taskCategories: TaskCategory[];
-
-
-  categoryId: string;
-  categoryName: string;
-  taskList:Task[];
-  menus:MenuElement[];
-  task: Task ;
-  status:boolean;
+export interface TaskViewerState {
+  taskCategoryName: string;
+  index: number;
+  taskCategoryState: TaskCategoryState[];
+  loader: boolean;
 }
 
-export const INIT_TASKVIEWER_STATE  = {
+export interface TaskCategoryState {
+  taskCategory: TaskCategory;
+  tasks: Task[];
+  menus: MenuElement[];
+  task: Task;
+  status: boolean;
+  loader: boolean;
+}
+
+export const INIT_TASKVIEWER_STATE = {
   taskCategoryName: '',
-  taskCategory : {} as TaskCategory,
-  taskCategories : [] as TaskCategory[],
-  
-
-  
-  
-  categoryId: '',
-  categoryName: '',
-  taskList:[] as Task[],
-  menus:[] as MenuElement[],
-  task:{} as Task,
-  status:false
-   
-  
+  index: -1,
+  taskCategoryState: [] as TaskCategoryState[],
+  loader : true,
 };
- export const InitBlankTask = {
-    
-      categoryId: null,
-      name: null,
-      userId: null,
-      priorityId: null,
-      assignedId: null,
-      status:true
-    
-  };
 
-  export const InitBlankCategory = {
+export const INIT_TASKCATEGORY_STATE = {
+  taskCategory:{} as TaskCategory,
+  tasks: [] as Task[],
+  menus: [] as MenuElement[],
+  task: {} as Task,
+  status: false,
+  loader: true,
+};
 
- 
-      
-        id:null,
-        name:null,
-        type:"C",
-        icon:{
-          name:"padding",
-          color:"gray"
-        }
-      
+export const Init_Task = {
+  categoryId: null,
+  name: null,
+  userId: null,
+  priorityId: null,
+  assignedId: null,
+  status: true
+};
 
-      
-  };
-  
-
-
+export const Init_Category = {
+  id: null,
+  name: null,
+  type: 'C',
+  icon: {
+    name: 'padding',
+    color: 'gray'
+  }
+};

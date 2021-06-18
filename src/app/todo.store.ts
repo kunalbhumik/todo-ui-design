@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { TaskService } from './task.service';
 import {
-  InitBlankCategory,
+  Init_Category,
+INIT_TASKCATEGORY_STATE,
   INIT_TASKVIEWER_STATE,
+TaskCategoryState,
   TaskViewerState
 } from './task.state';
 import { TaskCategory, Task, MenuElement } from './app.model';
@@ -24,44 +26,24 @@ export class TodoStore {
   }
 
   getTaskCategoryViewer() {
-    let taskCategories: TaskCategory[] = [];
+    let taskCategoryState: TaskCategoryState[] = [];
 
-    /*this.taskService.getTaskCategories()
+    this.taskService.getTaskCategories()
     .subscribe(tCategories => {
-      Object.entries(tCategories).forEach(e=> taskCategories.push(e[1]));
-    });*/
+      Object.entries(tCategories).forEach(e=> {
+        let taskCategory = { id: e[0], ...e[1]};
+        taskCategoryState.push({ ...INIT_TASKCATEGORY_STATE, taskCategory })});
+    });
 
-    this.http
-      .get('https://test-ba90f-default-rtdb.firebaseio.com/categories.json')
-      .pipe(
-        map(responseDate => {
-          const postsArray = [];
-          for (const key in responseDate) {
-            if (responseDate.hasOwnProperty(key)) {
-              taskCategories.push({ ...responseDate[key], id: key });
-            }
-          }
-          return taskCategories;
-        })
-      )
-      .subscribe(tasks => {
-        console.log(taskCategories);
-      });
-
-    let taskCategory = InitBlankCategory;
-
-    taskCategory.id = '-McEhWZzovHUTh5p8UMv';
-    taskCategory.name = 'My Day';
-    this.saveCredentials(taskCategory);
-
-    let menuList: MenuElement[] = [];
+    /*let menuList: MenuElement[] = [];
 
     this.taskService.getMenuList().subscribe(menus => {
       menuList = menus;
-    });
-    this.updateTaskViewer({ menus: menuList });
+       this.updateTaskViewer({ menus: menuList });
+      
+    });*/
 
-    this.updateTaskViewer({ taskCategories });
+    this.updateTaskViewer({taskCategoryState, loader:false });
   }
 
   getTaskViewer() {
@@ -118,6 +100,13 @@ export class TodoStore {
 
     this.taskViewrObservable.value.categoryId = taskCategory.id;
     this.taskViewrObservable.value.categoryName = taskCategory.name;
-    console.log('Menus ', this.taskViewrObservable.value.menus);
+  }
+
+  change(event) {
+    this.taskViewrObservable.value.taskList.forEach(item => {
+      if (item.name === event.option.value) {
+        item.status = !item.status;
+      }
+    });
   }
 }
