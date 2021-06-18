@@ -61,8 +61,12 @@ export class TodoStore{
      taskCategory.name = "My Day";
      this.saveCredentials(taskCategory);
      let menus : MenuElement[] = [];
-
+     
+    this.taskService.getMenuList().subscribe(menus=>{
+      menus = menus;
+    });
      this.updateTaskViewer({menus: menus});
+     console.log("Menus: ",menus);
     
     
     this.updateTaskViewer({taskCategories});
