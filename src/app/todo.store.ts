@@ -85,7 +85,7 @@ export class TodoStore{
       console.log("Tasks in ",tasks);
     })
 
-    this.updateTaskViewer({tasks});
+    this.updateTaskViewer({taskList:tasks});
 
 
 
