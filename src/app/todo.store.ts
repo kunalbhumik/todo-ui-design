@@ -3,6 +3,8 @@ import { BehaviorSubject } from "rxjs";
 import { TaskService } from "./task.service";
 import { INIT_TASKVIEWER_STATE, TaskViewerState } from "./task.state";
 import { TaskCategory } from './app.model';
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
 
 
 @Injectable({
@@ -13,7 +15,7 @@ export class TodoStore{
   
   private taskViewrObservable = new BehaviorSubject<TaskViewerState>(INIT_TASKVIEWER_STATE);
   taskViewer$ = this.taskViewrObservable.asObservable();
-  constructor(private taskService:TaskService){
+  constructor(private taskService:TaskService,private http:HttpClient){
     this.getTaskViewer();
   }
 
@@ -22,10 +24,26 @@ export class TodoStore{
     let taskCategories : TaskCategory[] = []; 
     
     
-    this.taskService.getTaskCategories()
+    /*this.taskService.getTaskCategories()
     .subscribe(tCategories => {
       Object.entries(tCategories).forEach(e=> taskCategories.push(e[1]));
-    });
+    });*/
+
+    this.http.get('https://test-ba90f-default-rtdb.firebaseio.com/categories.json')
+    .pipe(
+      map(responseDate=>{
+        const postsArray = [];
+        for(const key in responseDate){
+        if(responseDate.hasOwnProperty(key)){
+          taskCategories.push({...responseDate[key],id:key});
+        }
+        }
+        return taskCategories;
+      })
+    )
+    .subscribe(tasks => {
+      console.log(taskCategories);
+    })
     
     
     
@@ -51,7 +69,7 @@ export class TodoStore{
 
 
   addTaskCategory(){
-    var taskCategory : TaskCategory =this.taskService.getBlankCategory();
+    
    
     
     //let taskCategories = [...taskCategories,{...taskCategory , name:taskCategory.name}];
@@ -62,9 +80,7 @@ export class TodoStore{
     
   }
 
-  saveCredentials(categoryId:string,categoryName:string){
-      this.taskViewrObservable.next({})
-  }
+ 
 
 
 }

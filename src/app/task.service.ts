@@ -47,20 +47,6 @@ export class TaskService {
     };
   }
 
-  getBlankCategory(){
-
- 
-      return {
-        id:null,
-        name:null,
-        type:"C",
-        icon:{
-          name:"padding",
-          color:"gray"
-        }
-      }
-
-      
-  }
+  
 
 }

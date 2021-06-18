@@ -4,6 +4,7 @@ import { TaskCategory } from './app.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { TodoStore } from './todo.store';
+import { InitBlankCategory } from './task.state';
 
 @Component({
   selector: 'my-app',
@@ -15,12 +16,16 @@ export class AppComponent {
   
 
   taskViewer$ = this.taskStore.taskViewer$;
+  newTaskCategory : TaskCategory =InitBlankCategory;
+    
 
   constructor( private taskStore :TodoStore) {}
  
     
   addTaskCategory(){
-    this.taskStore.addTaskCategory()
+    console.log(InitBlankCategory);
+   this.saveCredentials(this.newTaskCategory);
+    this.taskStore.addTaskCategory();
     
 }
   saveCredentials(taskCategory :TaskCategory){

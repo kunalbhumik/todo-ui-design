@@ -24,7 +24,7 @@
       <div class="add-category">
         <button mat-icon-button class="add-button" (click)="addTaskCategory()"><mat-icon matPrefix>add</mat-icon></button>
 
-        <input matInput placeholder="Input" class="category-input" [(ngModel)]="taskViewer.taskCategory.name">
+        <input matInput placeholder="Input" class="category-input" [(ngModel)]="newTaskCategory.name">
       </div>
 
 
@@ -34,6 +34,7 @@
     </mat-drawer>
     <mat-drawer-content>
       <app-todo-list [categoryId]="taskViewer.taskCategory.id" [categoryName]="taskViewer.taskCategory.name">
+       
       </app-todo-list>
     </mat-drawer-content>
 

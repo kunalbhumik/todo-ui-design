@@ -14,6 +14,7 @@ import { TaskService } from '../task.service';
 })
 export class TodoListComponent implements OnInit {
   @ViewChild('taskName') inputName;
+  
   @Input()
   categoryId: string;
 
@@ -75,6 +76,7 @@ export class TodoListComponent implements OnInit {
   }
 
   addTask(){
+    console.log("category id",this.categoryId)
    
      this.task.categoryId = this.categoryId ;
       this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
