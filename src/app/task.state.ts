@@ -12,6 +12,7 @@ export interface TaskViewerState{
   taskList:Task[];
   menus:MenuElement[];
   task: Task ;
+  status:boolean;
 }
 
 export const INIT_TASKVIEWER_STATE  = {
@@ -21,21 +22,13 @@ export const INIT_TASKVIEWER_STATE  = {
   
 
   
-  @Input()
-  categoryId: '';
-
-  @Input()
-  categoryName: '',
-
-  taskList:[] as Task[]
-
-  menus:[] as MenuElement[],
-
-  task:{} as Task,
-
   
-
-  status:boolean;
+  categoryId: '',
+  categoryName: '',
+  taskList:[] as Task[],
+  menus:[] as MenuElement[],
+  task:{} as Task,
+  status,
    
   
 };

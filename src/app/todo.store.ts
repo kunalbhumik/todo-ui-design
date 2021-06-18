@@ -16,10 +16,11 @@ export class TodoStore{
   private taskViewrObservable = new BehaviorSubject<TaskViewerState>(INIT_TASKVIEWER_STATE);
   taskViewer$ = this.taskViewrObservable.asObservable();
   constructor(private taskService:TaskService,private http:HttpClient){
+    this.getTaskCategoryViewer();
     this.getTaskViewer();
   }
 
-  getTaskViewer(){
+  getTaskCategoryViewer(){
     
     let taskCategories : TaskCategory[] = []; 
     
@@ -44,6 +45,9 @@ export class TodoStore{
     .subscribe(tasks => {
       console.log(taskCategories);
     })
+
+
+     
     
     
     
@@ -61,6 +65,30 @@ export class TodoStore{
     
     
      
+  }
+
+  getTaskViewer(){
+    let tasks : Task[] = [];
+    this.http.get('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json')
+    .pipe(
+      map(responseDate=>{
+        const postsArray = [];
+        for(const key in responseDate){
+        if(responseDate.hasOwnProperty(key)){
+          tasks.push({...responseDate[key],id:key});
+        }
+        }
+        return tasks;
+      })
+    )
+    .subscribe(tasks => {
+      console.log("Tasks in ",tasks);
+    })
+
+    this.updateTaskViewer({tasks});
+
+
+
   }
 
   public updateTaskViewer( taskViewerP: Partial<TaskViewerState> ){

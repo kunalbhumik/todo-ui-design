@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Inject, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MenuElement, Task } from '../app.model';
 import { TaskService } from '../task.service';
+import { TodoStore } from '../todo.store';
 
 
 
@@ -34,7 +35,7 @@ export class TodoListComponent implements OnInit {
 
   
 
-  constructor(private taskService:TaskService,private http:HttpClient){}
+  constructor(private taskStore :TodoStore){}
 
 
   
