@@ -33,7 +33,7 @@ export class TaskService {
   }
 
   postTaskCategory(taskCategory:TaskCategory){
-    return this.http.post<Task>('https://test-ba90f-default-rtdb.firebaseio.com/categories.json',taskCategory);
+    return this.http.post<TaskCategory>('https://test-ba90f-default-rtdb.firebaseio.com/categories.json',taskCategory);
   }
 
   getBlankTask() {

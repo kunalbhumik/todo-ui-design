@@ -3,7 +3,7 @@ import { Component, Input, OnInit, Inject, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MenuElement, Task } from '../app.model';
 import { TaskService } from '../task.service';
-import { InitBlankTask } from '../task.state';
+import { Init_Task } from '../task.state';
 import { TodoStore } from '../todo.store';
 
 
@@ -16,7 +16,7 @@ import { TodoStore } from '../todo.store';
 })
 export class TodoListComponent{
   taskViewer$ = this.taskStore.taskViewer$;
-  newTask : Task = InitBlankTask;
+  newTask : Task = Init_Task;
 
   @ViewChild('taskName') inputName;
   taskList:Task[]=[];

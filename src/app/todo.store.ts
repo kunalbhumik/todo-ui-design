@@ -20,9 +20,9 @@ export class TodoStore {
     INIT_TASKVIEWER_STATE
   );
   taskViewer$ = this.taskViewrObservable.asObservable();
-  constructor(private taskService: TaskService, private http: HttpClient) {
+  constructor(private taskService: TaskService) {
     this.getTaskCategoryViewer();
-    this.getTaskViewer();
+    //this.getTaskViewer();
   }
 
   getTaskCategoryViewer() {
@@ -33,6 +33,7 @@ export class TodoStore {
       Object.entries(tCategories).forEach(e=> {
         let taskCategory = { id: e[0], ...e[1]};
         taskCategoryState.push({ ...INIT_TASKCATEGORY_STATE, taskCategory })});
+        
     });
 
     /*let menuList: MenuElement[] = [];
@@ -43,12 +44,12 @@ export class TodoStore {
       
     });*/
 
-    this.updateTaskViewer({taskCategoryState, loader:false });
+    this.updateTaskViewer({taskCategoryState, loader:false, index: 0 });
   }
 
   getTaskViewer() {
     let tasks: Task[] = [];
-    this.http
+   /* this.http
       .get('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json')
       .pipe(
         map(responseDate => {
@@ -61,9 +62,9 @@ export class TodoStore {
           return tasks;
         })
       )
-      .subscribe(tasks => {});
+      .subscribe(tasks => {});*/
 
-    this.updateTaskViewer({ taskList: tasks });
+    //this.updateTaskViewer({ taskList: tasks });
   }
 
   public updateTaskViewer(taskViewerP: Partial<TaskViewerState>) {
@@ -73,40 +74,46 @@ export class TodoStore {
     });
   }
 
-  addTaskCategory() {
-    let taskCategory = this.taskViewrObservable.value.taskCategory;
+  addTaskCategory(newTaskCategory:TaskCategory) {
+    
 
-    this.taskService.postTaskCategory(taskCategory).subscribe(category => {});
+    this.taskService.postTaskCategory(newTaskCategory).subscribe(taskCategory => {
 
-    let categories = this.taskViewrObservable.value.taskCategories;
-    categories = [...categories, taskCategory];
-    this.updateTaskViewer({ taskCategories: categories });
+      const taskCategoryState : TaskCategoryState = { ...INIT_TASKCATEGORY_STATE, taskCategory };
+    this.updateTaskViewer({taskCategoryState: [...this.taskViewrObservable.value.taskCategoryState,taskCategoryState ]});
+    });
+
+    
   }
 
   addTask(newTask: Task) {
-    newTask.categoryId = this.taskViewrObservable.value.categoryId;
+    const taskCategoryState = this.taskViewrObservable.value.taskCategoryState[this.taskViewrObservable.value.index];
+    newTask.categoryId = taskCategoryState.taskCategory.id;
     //this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
-    this.taskService.postTask(newTask).subscribe(task => {});
+    this.taskService.postTask(newTask).subscribe(task => {
+      const newState = {...taskCategoryState, tasks : [ ...taskCategoryState.tasks, task ]};
+      this.taskViewrObservable.value.taskCategoryState[this.taskViewrObservable.value.index] =newState
+      this.updateTaskViewer({ taskCategoryState : [...this.taskViewrObservable.value.taskCategoryState] });
+    });
+    
+    
+    
 
-    let tasks = this.taskViewrObservable.value.taskList;
-    tasks = [...tasks, newTask];
-    this.updateTaskViewer({ taskList: tasks });
-
-    console.log(tasks);
+   
+  }
+  selectTaskCategory(index : number){
+    this.updateTaskViewer({index});
+    
   }
 
-  saveCredentials(taskCategory: TaskCategory) {
-    console.log(taskCategory.id, taskCategory.name);
-
-    this.taskViewrObservable.value.categoryId = taskCategory.id;
-    this.taskViewrObservable.value.categoryName = taskCategory.name;
-  }
+ 
 
   change(event) {
+    /*
     this.taskViewrObservable.value.taskList.forEach(item => {
       if (item.name === event.option.value) {
         item.status = !item.status;
       }
-    });
+    });*/
   }
 }

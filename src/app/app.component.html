@@ -15,12 +15,12 @@
           </mat-form-field>
         </mat-list-item>
 
-        <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState.taskCategories, 'prop':'S'}">
+        <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState, 'prop':'S'}">
         </ng-container>
       </mat-nav-list>
       <mat-divider></mat-divider>
       <mat-nav-list>
-        <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState.taskCategories, 'prop':'C'}">
+        <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState, 'prop':'C'}">
         </ng-container>
 
       </mat-nav-list>
@@ -50,12 +50,11 @@
 
 
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
-  <a mat-list-item *ngFor="let category of taskCategories | prop:prop" class="nav-list-item"
-    (click)="saveCredentials(category)">
-    <mat-icon matPrefix mat-list-icon [ngStyle]="{'color':category.icon.color}">
-      {{category.icon.name}}
+  <a mat-list-item (click)="selectTaskCategory(i)" *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index" class="nav-list-item">
+    <mat-icon matPrefix mat-list-icon [ngStyle]="{'color':categoryState.taskCategory.icon.color}">
+      {{categoryState.taskCategory.icon.name}}
     </mat-icon>
-    <h4 mat-line>{{category.name}}</h4>
+    <h4 mat-line>{{categoryState.taskCategory.name}}</h4>
 
 
 
