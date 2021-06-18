@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { TaskService } from "./task.service";
 import { INIT_TASKVIEWER_STATE, TaskViewerState } from "./task.state";
-import { TaskCategory } from './app.model';
+import { TaskCategory,Task } from './app.model';
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
@@ -98,14 +98,31 @@ export class TodoStore{
 
   addTaskCategory(){
     
-   
-    
+    let taskCategory = this.taskViewrObservable.value.taskCategory;
+    this.updateTaskViewer({taskCategory});
     //let taskCategories = [...taskCategories,{...taskCategory , name:taskCategory.name}];
-
+    
     this.taskService.postTaskCategory(this.taskViewrObservable.value.taskCategory).subscribe(category => {
       
     })
     
+  }
+
+  addTask(){
+    
+   
+     this.task.categoryId = this.categoryId ;
+      this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
+      
+      console.log(this.taskList);
+
+     
+      
+
+      this.taskService.postTask(this.task).subscribe(result=>{
+        console.log(result);
+      });
+      this.inputName.nativeElement.value = ' ';
   }
 
  

@@ -13,14 +13,13 @@ import { TodoStore } from '../todo.store';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent{
+  taskViewer$ = this.taskStore.taskViewer$;
+
+
   @ViewChild('taskName') inputName;
   
-  @Input()
-  categoryId: string;
-
-  @Input()
-  categoryName: string;
+  
 
   taskList:Task[]=[];
 
@@ -41,57 +40,10 @@ export class TodoListComponent implements OnInit {
   
   
   
-  ngOnInit() {
-    /*this.taskService.getTaskList().subscribe(result=>{
-      this.taskList = result;
-      console.log(this.taskList[8].categoryId);
-      console.log(this.taskList[9].name);
-      console.log(result);
-      
-    })*/
-
-    this.http.get('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json')
-    .pipe(
-      map(responseDate=>{
-        const postsArray = [];
-        for(const key in responseDate){
-        if(responseDate.hasOwnProperty(key)){
-          this.taskList.push({...responseDate[key],id:key});
-        }
-        }
-        return this.taskList;
-      })
-    )
-    .subscribe(tasks => {
-      console.log(this.taskList);
-    })
-
-    this.task = this.taskService.getBlankTask();
-    
-    this.taskService.getMenuList().subscribe(menus=>{
-      this.menus= menus;
-     
-    })
-
-    
-  }
-
+  
   addTask(){
-    console.log("category id",this.categoryId)
-   
-     this.task.categoryId = this.categoryId ;
-      this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
-      
-      console.log(this.taskList);
-
-     
-      
-
-      this.taskService.postTask(this.task).subscribe(result=>{
-        console.log(result);
-      });
-      this.inputName.nativeElement.value = ' ';
-    }
+    this.taskStore.addTask();
+  }
 
    
     
