@@ -28,7 +28,7 @@ export const INIT_TASKVIEWER_STATE  = {
   taskList:[] as Task[],
   menus:[] as MenuElement[],
   task:{} as Task,
-  status,
+  status:false
    
   
 };
