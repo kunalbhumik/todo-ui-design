@@ -87,6 +87,8 @@ export class TodoStore{
 
     this.updateTaskViewer({taskList:tasks});
 
+    
+
 
 
   }
@@ -99,30 +101,38 @@ export class TodoStore{
   addTaskCategory(){
     
     let taskCategory = this.taskViewrObservable.value.taskCategory;
-    this.updateTaskViewer({taskCategory:taskCategory});
-    //let taskCategories = [...taskCategories,{...taskCategory , name:taskCategory.name}];
     
-    this.taskService.postTaskCategory(this.taskViewrObservable.value.taskCategory).subscribe(category => {
+    this.taskService.postTaskCategory(taskCategory).subscribe(category => {
       
     })
-    
+
+    let categories = this.taskViewrObservable.value.taskCategories;
+    categories = [...categories,taskCategory];
+    this.updateTaskViewer({taskCategories:categories});
   }
 
-  addTask(){
+  addTask(newTask:Task){
     
    
-     this.task.categoryId = this.categoryId ;
-      this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
-      
-      console.log(this.taskList);
+     newTask.categoryId = this.taskViewrObservable.value.categoryId;
+      //this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
+      this.taskService.postTask(newTask).subscribe(task => {
 
-     
-      
+      })
 
-      this.taskService.postTask(this.task).subscribe(result=>{
-        console.log(result);
-      });
-      this.inputName.nativeElement.value = ' ';
+      let tasks = this.taskViewrObservable.value.taskList;
+      tasks = [...tasks , newTask];
+      this.updateTaskViewer({taskList:tasks});
+      
+      console.log(tasks);
+
+  }
+
+  saveCredentials(taskCategory :TaskCategory){
+      console.log(taskCategory.id,taskCategory.name);
+
+      this.taskViewrObservable.value.categoryId = taskCategory.id;
+      this.taskViewrObservable.value.categoryName = taskCategory.name;
   }
 
  

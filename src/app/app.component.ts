@@ -30,6 +30,7 @@ export class AppComponent {
 }
   saveCredentials(taskCategory :TaskCategory){
     this.taskStore.updateTaskViewer({taskCategory:taskCategory});
+    this.taskStore.saveCredentials(taskCategory);
   }
 
   

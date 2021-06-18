@@ -3,7 +3,7 @@
   <mat-toolbar>
 
     <mat-toolbar-row>
-      <span>{{categoryName}}</span>
+      <span>{{taskViewer.categoryName}}</span>
       <span class="spacer"></span>
       <button mat-button class="icon-button">
         <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
@@ -31,7 +31,7 @@
 <mat-selection-list (selectionChange)="change($event)" class="test">
   <ng-container *ngFor="let task of taskViewer.taskList">
 
-    <mat-list-option  [checkboxPosition]="before" [value]="task.name">
+    <mat-list-option *ngIf="task.categoryId === taskViewer.categoryId" [checkboxPosition]="before" [value]="task.name">
       <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
         {{task.name}}
       </div>
@@ -46,7 +46,7 @@
   
     <mat-form-field appearance="outline" class="add-task-form-field">
        <button mat-icon-button class="add-button" (click)="addTask()"><mat-icon matPrefix>add</mat-icon></button>
-      <input matInput placeholder="Add a Task" maxlength="300" class="task-input" [(ngModel)]="task.name" #taskName required/>
+      <input matInput placeholder="Add a Task" maxlength="300" class="task-input" [(ngModel)]="newTask.name" #taskName required/>
     </mat-form-field>
 
  </div>
