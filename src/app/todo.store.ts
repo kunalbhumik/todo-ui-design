@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { TaskService } from "./task.service";
-import { INIT_TASKVIEWER_STATE, TaskViewerState } from "./task.state";
-import { TaskCategory,Task } from './app.model';
+import { InitBlankCategory, INIT_TASKVIEWER_STATE, TaskViewerState } from "./task.state";
+import { TaskCategory,Task, MenuElement } from './app.model';
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
@@ -53,12 +53,16 @@ export class TodoStore{
     
     
      console.log(taskCategories);
-     /*this.taskService.getTaskCategories().subscribe(result => {
-     taskCategories = result;
-      console.log(taskCategories);
-      
-    });*/
-    
+     
+
+     let taskCategory = InitBlankCategory;
+
+     taskCategory.id = "-McEhWZzovHUTh5p8UMv";
+     taskCategory.name = "My Day";
+     this.saveCredentials(taskCategory);
+     let menus : MenuElement[] = [];
+
+     this.updateTaskViewer({menus: menus});
     
     
     this.updateTaskViewer({taskCategories});

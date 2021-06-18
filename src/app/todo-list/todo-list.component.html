@@ -19,7 +19,7 @@
   </mat-toolbar>
   <mat-menu #menuList="matMenu">
 
-    <ng-container *ngFor="let menu of menus">
+    <ng-container *ngFor="let menu of taskViewer.menus">
       <button mat-menu-item >
         <mat-icon>{{menu.icon}}</mat-icon>{{menu.name}}</button>
     </ng-container>

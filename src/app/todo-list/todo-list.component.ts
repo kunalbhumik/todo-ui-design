@@ -19,17 +19,9 @@ export class TodoListComponent{
   newTask : Task = InitBlankTask;
 
   @ViewChild('taskName') inputName;
-  
-  
-
   taskList:Task[]=[];
-
   menus:MenuElement[]=[];
-
   task: Task ;
-
-  
-
   status:boolean;
    
 
@@ -38,18 +30,13 @@ export class TodoListComponent{
   constructor(private taskStore :TodoStore){}
 
 
-  
-  
-  
-  
-  addTask(newTask){
-    this.taskStore.addTask(newTask);
+  addTask(){
+
+    this.taskStore.addTask(this.newTask);
+    this.inputName.nativeElement.value = ' ';
   }
 
    
-    
-
-
   change(event){
    this.taskList.forEach(item => {
      if(item.name === event.option.value){
