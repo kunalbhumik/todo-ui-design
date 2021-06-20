@@ -3,9 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 import { TaskService } from './task.service';
 import {
   Init_Category,
-INIT_TASKCATEGORY_STATE,
+  INIT_TASKCATEGORY_STATE,
   INIT_TASKVIEWER_STATE,
-TaskCategoryState,
+  TaskCategoryState,
   TaskViewerState
 } from './task.state';
 import { TaskCategory, Task, MenuElement } from './app.model';
@@ -24,16 +24,16 @@ export class TodoStore {
     this.getTaskCategoryViewer();
     //this.getTaskViewer();
   }
-
+  taskCategoryState: TaskCategoryState[] = [];
   getTaskCategoryViewer() {
     let taskCategoryState: TaskCategoryState[] = [];
 
-    this.taskService.getTaskCategories()
-    .subscribe(tCategories => {
-      Object.entries(tCategories).forEach(e=> {
-        let taskCategory = { id: e[0], ...e[1]};
-        taskCategoryState.push({ ...INIT_TASKCATEGORY_STATE, taskCategory })});
-        
+    this.taskService.getTaskCategories().subscribe(tCategories => {
+      Object.entries(tCategories).forEach(e => {
+        let taskCategory = { id: e[0], ...e[1] };
+        taskCategoryState.push({ ...INIT_TASKCATEGORY_STATE, taskCategory });
+         this.taskCategoryState.push({ ...INIT_TASKCATEGORY_STATE, taskCategory });
+      });
     });
 
     /*let menuList: MenuElement[] = [];
@@ -44,12 +44,12 @@ export class TodoStore {
       
     });*/
 
-    this.updateTaskViewer({taskCategoryState, loader:false, index: 0 });
+    this.updateTaskViewer({taskCategoryState : this.taskCategoryState, loader: false, index: 0 });
   }
 
   getTaskViewer() {
     let tasks: Task[] = [];
-   /* this.http
+    /* this.http
       .get('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json')
       .pipe(
         map(responseDate => {
@@ -74,39 +74,66 @@ export class TodoStore {
     });
   }
 
-  addTaskCategory(newTaskCategory:TaskCategory) {
-    
+  // addTaskCategory(newTaskCategory: TaskCategory) {
+  //   this.taskService
+  //     .postTaskCategory(newTaskCategory)
+  //     .subscribe(taskCategory => {
+  //       const taskCategoryState: TaskCategoryState = {
+  //         ...INIT_TASKCATEGORY_STATE,
+  //         taskCategory
+  //       };
+  //       this.updateTaskViewer({
+  //         taskCategoryState: [
+  //           ...this.taskViewrObservable.value.taskCategoryState,
+  //           taskCategoryState
+  //         ]
+  //       });
+  //     });
+  // }
 
-    this.taskService.postTaskCategory(newTaskCategory).subscribe(taskCategory => {
+addTaskCategory(newTaskCategory: TaskCategory) {
+    this.taskService
+      .postTaskCategory(newTaskCategory)
+      .subscribe(taskCategory => {
+        
+      });
 
-      const taskCategoryState : TaskCategoryState = { ...INIT_TASKCATEGORY_STATE, taskCategory };
-    this.updateTaskViewer({taskCategoryState: [...this.taskViewrObservable.value.taskCategoryState,taskCategoryState ]});
-    });
+     const taskCategoryState: TaskCategoryState = {
+          ...INIT_TASKCATEGORY_STATE,
+          taskCategory : newTaskCategory
+        };
 
-    
+     this.updateTaskViewer({
+          taskCategoryState: [
+            ...this.taskViewrObservable.value.taskCategoryState,
+            taskCategoryState
+          ]
+        });
+
+
   }
-
   addTask(newTask: Task) {
-    const taskCategoryState = this.taskViewrObservable.value.taskCategoryState[this.taskViewrObservable.value.index];
+    const taskCategoryState = this.taskViewrObservable.value.taskCategoryState[
+      this.taskViewrObservable.value.index
+    ];
     newTask.categoryId = taskCategoryState.taskCategory.id;
     //this.taskList = [...this.taskList, {...this.task, categoryId : this.categoryId}];
     this.taskService.postTask(newTask).subscribe(task => {
-      const newState = {...taskCategoryState, tasks : [ ...taskCategoryState.tasks, task ]};
-      this.taskViewrObservable.value.taskCategoryState[this.taskViewrObservable.value.index] =newState
-      this.updateTaskViewer({ taskCategoryState : [...this.taskViewrObservable.value.taskCategoryState] });
+      const newState = {
+        ...taskCategoryState,
+        tasks: [...taskCategoryState.tasks, task]
+      };
+      this.taskViewrObservable.value.taskCategoryState[
+        this.taskViewrObservable.value.index
+      ] = newState;
+      this.updateTaskViewer({
+        taskCategoryState: [...this.taskViewrObservable.value.taskCategoryState]
+      });
     });
-    
-    
-    
-
-   
   }
-  selectTaskCategory(index : number){
-    this.updateTaskViewer({index});
-    
+  selectTaskCategory(index: number) {
+    this.updateTaskViewer({ index });
   }
-
- 
 
   change(event) {
     /*
