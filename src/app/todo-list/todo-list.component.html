@@ -33,7 +33,7 @@
 
     <mat-list-option  [checkboxPosition]="before" [value]="task.name">
       <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
-        {{task.name}}
+        {{task.categoryId}}---------{{task.name}}  
       </div>
     </mat-list-option>
 
