@@ -20,9 +20,10 @@ export class TodoStore {
     INIT_TASKVIEWER_STATE
   );
   taskViewer$ = this.taskViewrObservable.asObservable();
-  constructor(private taskService: TaskService,private http : HttpClient) {
+  constructor(private taskService: TaskService) {
     this.getTaskCategoryViewer();
     //this.getTaskViewer();
+    this.getMenus();
   }
   taskCategoryState: TaskCategoryState[] = [];
   getTaskCategoryViewer() {
@@ -59,23 +60,7 @@ export class TodoStore {
       this.updateTaskViewer({taskCategoryState : categories}); 
       
     });
-
-    // this.http
-    //   .get('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json')
-    //   .pipe(
-    //     map(responseDate => {
-    //       const postsArray = [];
-    //       for (const key in responseDate) {
-    //         if (responseDate.hasOwnProperty(key)) {
-    //           tasks.push({ ...responseDate[key], id: key });
-    //         }
-    //       }
-    //       return tasks;
-    //     })
-    //   )
-    //   .subscribe(tasks => {});
-
-    //this.updateTaskViewer({ taskList: tasks });
+    this.getMenus();
   }
 
   public updateTaskViewer(taskViewerP: Partial<TaskViewerState>) {
@@ -85,15 +70,30 @@ export class TodoStore {
     });
   }
 
+  getMenus(){
+    
+
+     this.taskService.getMenuList().subscribe(menus => {
+      menus = menus;
+      console.log(menus);
+       let categories = [...this.taskViewrObservable.getValue().taskCategoryState];
+      let categoryTask = categories[this.taskViewrObservable.getValue().index];
+      categoryTask.menus = menus;
+      
+      
+        
+       this.updateTaskViewer({taskCategoryState : categories}); 
+    });
+   
+  }
+
   
 addTaskCategory(newTaskCategory: TaskCategory) {
     this.taskService
       .postTaskCategory(newTaskCategory)
       .subscribe(taskCategory => {
-        
-      });
 
-     const taskCategoryState: TaskCategoryState = {
+        const taskCategoryState: TaskCategoryState = {
           ...INIT_TASKCATEGORY_STATE,
           taskCategory : newTaskCategory
         };
@@ -104,9 +104,15 @@ addTaskCategory(newTaskCategory: TaskCategory) {
             taskCategoryState
           ]
         });
+        
+      });
+
+     
 
 
   }
+
+
   addTask(newTask: Task) {
     const taskCategoryState = this.taskViewrObservable.value.taskCategoryState[
       this.taskViewrObservable.value.index
@@ -116,11 +122,12 @@ addTaskCategory(newTaskCategory: TaskCategory) {
     this.taskService.postTask(newTask).subscribe(task => {
       const newState = {
         ...taskCategoryState,
-        tasks: [...taskCategoryState.tasks, task]
+        tasks: [...taskCategoryState.tasks, newTask]
       };
-      this.taskViewrObservable.value.taskCategoryState[
-        this.taskViewrObservable.value.index
-      ] = newState;
+     let categories = [...this.taskViewrObservable.getValue().taskCategoryState];
+      let categoryTask = categories[this.taskViewrObservable.getValue().index];
+      categoryTask.tasks = newState.tasks;
+      this.updateTaskViewer({taskCategoryState : categories}); 
       this.updateTaskViewer({
         taskCategoryState: [...this.taskViewrObservable.value.taskCategoryState]
       });
@@ -132,14 +139,15 @@ addTaskCategory(newTaskCategory: TaskCategory) {
 
   }
 
-  change(event) {
-    /*
-    this.taskViewrObservable.value.taskList.forEach(item => {
-      if (item.name === event.option.value) {
-        item.status = !item.status;
-      }
-    });*/
-  }
+  // change(event) {
+    
+  //   this.taskViewrObservable.value.taskList.forEach(item => {
+  //     if (item.name === event.option.value) {
+  //       item.status = !item.status;
+  //     }
+  //   });
+  // }
 
+  
  
 }

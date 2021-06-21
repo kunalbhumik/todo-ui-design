@@ -3,7 +3,7 @@
   <mat-toolbar>
 
     <mat-toolbar-row>
-      <span>{{taskViewer.categoryName}}</span>
+      <span>{{taskViewer.taskCategoryState[taskViewer.index].taskCategory.name}}</span>
       <span class="spacer"></span>
       <button mat-button class="icon-button">
         <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
@@ -19,7 +19,7 @@
   </mat-toolbar>
   <mat-menu #menuList="matMenu">
 
-    <ng-container *ngFor="let menu of taskViewer.menus">
+    <ng-container *ngFor="let menu of taskViewer.taskCategoryState[taskViewer.index].menus">
       <button mat-menu-item >
         <mat-icon>{{menu.icon}}</mat-icon>{{menu.name}}</button>
     </ng-container>
@@ -33,7 +33,7 @@
 
     <mat-list-option  [checkboxPosition]="before" [value]="task.name">
       <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
-        {{task.categoryId}}---------{{task.name}}  
+        {{task.name}}  
       </div>
     </mat-list-option>
 

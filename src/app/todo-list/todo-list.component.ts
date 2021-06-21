@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Inject, ViewChild, SimpleChanges, OnChanges } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MenuElement, Task } from '../app.model';
 import { TaskService } from '../task.service';
@@ -14,7 +14,7 @@ import { TodoStore } from '../todo.store';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent implements OnInit{
+export class TodoListComponent implements OnChanges{
   taskViewer$ = this.taskStore.taskViewer$;
   newTask : Task = Init_Task;
   @Input() categoryId : string;
@@ -32,9 +32,7 @@ export class TodoListComponent implements OnInit{
   
 
   constructor(private taskStore :TodoStore){}
-  ngOnInit(){
-    this.getTasks(this.categoryId);
-  }
+  
 
 
   addTask(){
@@ -52,4 +50,8 @@ export class TodoListComponent implements OnInit{
   getTasks(categoryId){
     this.taskStore.getTasks(categoryId);
   }
+   ngOnChanges(changes: SimpleChanges) {
+     this.getTasks(changes.categoryId.currentValue);
+  }
+  
 }

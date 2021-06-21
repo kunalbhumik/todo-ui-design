@@ -11,6 +11,8 @@ import { Init_Category, INIT_TASKCATEGORY_STATE, TaskCategoryState } from './tas
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+   @ViewChild('categoryName') inputName;
+   categoryNameSearch :string = '';
   categoryId : string;
   taskViewer$ = this.taskStore.taskViewer$;
   newTaskCategory: TaskCategory = Init_Category;
@@ -20,6 +22,7 @@ export class AppComponent {
   addTaskCategory() {
     this.taskStore.addTaskCategory(this.newTaskCategory);
     this.newTaskCategory = Init_Category;
+     this.inputName.nativeElement.value = ' ';
   }
 
   selectTaskCategory(index: number,category:TaskCategory) {

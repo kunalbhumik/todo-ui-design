@@ -11,7 +11,7 @@
         <mat-list-item class="search-list-item">
           <mat-form-field appearance="outline" class="search-form-field">
             <mat-icon matPrefix>search</mat-icon>
-            <input matInput placeholder="Input" class="search-input" [(ngModel)]="taskViewer.taskCategoryName"/>
+            <input matInput placeholder="Input" class="search-input" [(ngModel)]="categoryNameSearch" />
           </mat-form-field>
         </mat-list-item>
 
@@ -29,7 +29,7 @@
       <div class="add-category">
         <button mat-icon-button class="add-button" (click)="addTaskCategory()"><mat-icon matPrefix>add</mat-icon></button>
 
-        <input matInput placeholder="Input" class="category-input" [(ngModel)]="newTaskCategory.name">
+        <input matInput placeholder="New List" class="category-input" [(ngModel)]="newTaskCategory.name" #categoryName required>
       </div>
 
 
@@ -37,8 +37,9 @@
 
 
     </mat-drawer>
-    <mat-drawer-content>
-      <app-todo-list [categoryId]="categoryId">
+    <mat-drawer-content >
+   
+      <app-todo-list  [categoryId]="taskViewer.taskCategoryState[taskViewer.index].taskCategory.id">
        
       </app-todo-list>
     </mat-drawer-content>
@@ -50,7 +51,7 @@
 
 
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
-  <a mat-list-item (click)="selectTaskCategory(i,categoryState.taskCategory)" *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index" class="nav-list-item">
+  <a mat-list-item (click)="selectTaskCategory(prop == 'S' ? i : (i+5) ,categoryState.taskCategory)" *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index" class="nav-list-item">
     <mat-icon matPrefix mat-list-icon [ngStyle]="{'color':categoryState.taskCategory.icon.color}">
       {{categoryState.taskCategory.icon.name}}
     </mat-icon>
