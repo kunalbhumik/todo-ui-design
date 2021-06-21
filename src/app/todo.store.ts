@@ -20,7 +20,7 @@ export class TodoStore {
     INIT_TASKVIEWER_STATE
   );
   taskViewer$ = this.taskViewrObservable.asObservable();
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService,private http : HttpClient) {
     this.getTaskCategoryViewer();
     //this.getTaskViewer();
   }
@@ -32,7 +32,7 @@ export class TodoStore {
       Object.entries(tCategories).forEach(e => {
         let taskCategory = { id: e[0], ...e[1] };
         taskCategoryState.push({ ...INIT_TASKCATEGORY_STATE, taskCategory });
-         this.taskCategoryState.push({ ...INIT_TASKCATEGORY_STATE, taskCategory });
+         
       });
     });
 
@@ -44,25 +44,32 @@ export class TodoStore {
       
     });*/
 
-    this.updateTaskViewer({taskCategoryState : this.taskCategoryState, loader: false, index: 0 });
+    this.updateTaskViewer({taskCategoryState :taskCategoryState, loader: false, index: 0 });
   }
 
-  getTaskViewer() {
-    let tasks: Task[] = [];
-    /* this.http
-      .get('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json')
-      .pipe(
-        map(responseDate => {
-          const postsArray = [];
-          for (const key in responseDate) {
-            if (responseDate.hasOwnProperty(key)) {
-              tasks.push({ ...responseDate[key], id: key });
-            }
-          }
-          return tasks;
-        })
-      )
-      .subscribe(tasks => {});*/
+  getTasks(categoryId:string) {
+    let tasks :Task[] = [];
+
+    this.taskService.getTaskList().subscribe(taskList => {
+      console.log(taskList);
+       
+      })
+    })
+
+    // this.http
+    //   .get('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json')
+    //   .pipe(
+    //     map(responseDate => {
+    //       const postsArray = [];
+    //       for (const key in responseDate) {
+    //         if (responseDate.hasOwnProperty(key)) {
+    //           tasks.push({ ...responseDate[key], id: key });
+    //         }
+    //       }
+    //       return tasks;
+    //     })
+    //   )
+    //   .subscribe(tasks => {});
 
     //this.updateTaskViewer({ taskList: tasks });
   }
@@ -74,23 +81,7 @@ export class TodoStore {
     });
   }
 
-  // addTaskCategory(newTaskCategory: TaskCategory) {
-  //   this.taskService
-  //     .postTaskCategory(newTaskCategory)
-  //     .subscribe(taskCategory => {
-  //       const taskCategoryState: TaskCategoryState = {
-  //         ...INIT_TASKCATEGORY_STATE,
-  //         taskCategory
-  //       };
-  //       this.updateTaskViewer({
-  //         taskCategoryState: [
-  //           ...this.taskViewrObservable.value.taskCategoryState,
-  //           taskCategoryState
-  //         ]
-  //       });
-  //     });
-  // }
-
+  
 addTaskCategory(newTaskCategory: TaskCategory) {
     this.taskService
       .postTaskCategory(newTaskCategory)
@@ -131,8 +122,10 @@ addTaskCategory(newTaskCategory: TaskCategory) {
       });
     });
   }
-  selectTaskCategory(index: number) {
+  selectTaskCategory(categoryId : string) {
     this.updateTaskViewer({ index });
+    this.getTasks(categoryId);
+
   }
 
   change(event) {

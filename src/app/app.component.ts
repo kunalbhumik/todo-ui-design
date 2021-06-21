@@ -11,6 +11,7 @@ import { Init_Category, TaskCategoryState } from './task.state';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  categoryId : string;
   taskViewer$ = this.taskStore.taskViewer$;
   newTaskCategory: TaskCategory = Init_Category;
 
@@ -21,7 +22,8 @@ export class AppComponent {
     this.newTaskCategory = Init_Category;
   }
 
-  selectTaskCategory(index: number) {
-    this.taskStore.selectTaskCategory(index);
+  selectTaskCategory(index: number,categoryId : string) {
+    this.categoryId = categoryId;
+    //this.taskStore.selectTaskCategory(categoryId);
   }
 }

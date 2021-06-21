@@ -17,6 +17,8 @@ import { TodoStore } from '../todo.store';
 export class TodoListComponent{
   taskViewer$ = this.taskStore.taskViewer$;
   newTask : Task = Init_Task;
+  @Input() categoryId : string;
+
 
   @ViewChild('taskName') inputName;
   taskList:Task[]=[];
@@ -39,5 +41,9 @@ export class TodoListComponent{
    
   change(event){
    this.taskStore.change(event);
+  }
+
+  getTasks(categoryId){
+    this.taskStore.getTasks(categoryId);
   }
 }
