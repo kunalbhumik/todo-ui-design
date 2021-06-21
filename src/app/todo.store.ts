@@ -51,10 +51,14 @@ export class TodoStore {
     let tasks :Task[] = [];
 
     this.taskService.getTaskList().subscribe(taskList => {
-      console.log(taskList);
-       
-      })
-    })
+      
+      tasks.push(...Object.values(taskList).filter(item => item.categoryId == categoryId));
+      let categories = [...this.taskViewrObservable.getValue().taskCategoryState];
+      let categoryTask = categories[this.taskViewrObservable.getValue().index];
+      categoryTask.tasks = tasks;
+      this.updateTaskViewer({taskCategoryState : categories}); 
+      
+    });
 
     // this.http
     //   .get('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json')
@@ -136,4 +140,6 @@ addTaskCategory(newTaskCategory: TaskCategory) {
       }
     });*/
   }
+
+ 
 }

@@ -50,7 +50,7 @@
 
 
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
-  <a mat-list-item (click)="selectTaskCategory(i,categoryState.taskCategory.categoryId)" *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index" class="nav-list-item">
+  <a mat-list-item (click)="selectTaskCategory(i,categoryState.taskCategory)" *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index" class="nav-list-item">
     <mat-icon matPrefix mat-list-icon [ngStyle]="{'color':categoryState.taskCategory.icon.color}">
       {{categoryState.taskCategory.icon.name}}
     </mat-icon>

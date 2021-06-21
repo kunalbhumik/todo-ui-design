@@ -32,6 +32,9 @@ export class TodoListComponent implements OnInit{
   
 
   constructor(private taskStore :TodoStore){}
+  ngOnInit(){
+    this.getTasks(this.categoryId);
+  }
 
 
   addTask(){

@@ -28,10 +28,10 @@
   </mat-menu>
 </div>
 
-<mat-selection-list (selectionChange)="change($event)" class="test">
-  <ng-container *ngFor="let task of taskViewer.taskList">
+<mat-selection-list *ngIf="taskViewer.taskCategoryState[taskViewer.index]" (selectionChange)="change($event)" class="test">
+  <ng-container *ngFor="let task of taskViewer.taskCategoryState[taskViewer.index].tasks">
 
-    <mat-list-option *ngIf="task.categoryId === taskViewer.categoryId" [checkboxPosition]="before" [value]="task.name">
+    <mat-list-option  [checkboxPosition]="before" [value]="task.name">
       <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
         {{task.name}}
       </div>

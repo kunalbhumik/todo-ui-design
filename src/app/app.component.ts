@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TaskCategory } from './app.model';
 
 import { TodoStore } from './todo.store';
-import { Init_Category, TaskCategoryState } from './task.state';
+import { Init_Category, INIT_TASKCATEGORY_STATE, TaskCategoryState } from './task.state';
 
 @Component({
   selector: 'my-app',
@@ -22,8 +22,10 @@ export class AppComponent {
     this.newTaskCategory = Init_Category;
   }
 
-  selectTaskCategory(index: number,categoryId : string) {
-    this.categoryId = categoryId;
+  selectTaskCategory(index: number,category:TaskCategory) {
+    this.categoryId = category.id;
+   
+    this.taskStore.updateTaskViewer({taskCategoryName : category.name, index : index });
     //this.taskStore.selectTaskCategory(categoryId);
   }
 }
