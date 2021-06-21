@@ -14,7 +14,7 @@ import { TodoStore } from '../todo.store';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent{
+export class TodoListComponent implements OnInit{
   taskViewer$ = this.taskStore.taskViewer$;
   newTask : Task = Init_Task;
   @Input() categoryId : string;
@@ -25,6 +25,8 @@ export class TodoListComponent{
   menus:MenuElement[]=[];
   task: Task ;
   status:boolean;
+
+
    
 
   
@@ -38,6 +40,7 @@ export class TodoListComponent{
     this.inputName.nativeElement.value = ' ';
   }
 
+  
    
   change(event){
    this.taskStore.change(event);
