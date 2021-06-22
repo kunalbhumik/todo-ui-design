@@ -20,7 +20,10 @@ import { TodoStore } from '../todo.store';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnChanges {
-  taskViewer$ = this.taskStore.taskViewer$;
+  @Input() 
+  index : number ;
+
+  
   newTask: Task = this.taskStore.getNewTask();
   taskCategoryState: TaskCategoryState;
 
@@ -43,6 +46,7 @@ export class TodoListComponent implements OnChanges {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.getTasks(changes.categoryId.currentValue);
+    this.taskCategoryState = this.taskStore.getSelectedTaskCategory(this.index);
   }
 
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { TaskService } from './task.service';
 import {
   Init_Category,
@@ -16,6 +16,12 @@ import { TaskCategory, Task, MenuElement } from './app.model';
   providedIn: 'root'
 })
 export class TodoStore {
+  
+
+
+
+
+
   private taskViewrObservable = new BehaviorSubject<TaskViewerState>(
     INIT_TASKVIEWER_STATE
   );
@@ -25,6 +31,8 @@ export class TodoStore {
     
     this.getMenus();
   }
+  
+
   taskCategoryState: TaskCategoryState[] = [];
   getTaskCategoryViewer() {
     let taskCategoryState: TaskCategoryState[] = [];
@@ -142,8 +150,8 @@ addTaskCategory(newTaskCategory: TaskCategory) {
    return {...Init_Task};
   }
 
-  getSelectedTaskCategory(){
-    
+  getSelectedTaskCategory(index : number){
+    return this.taskViewrObservable.getValue().taskCategoryState[index];
   }
   selectTaskCategory(categoryState: TaskCategoryState){
     const index  = this.taskViewrObservable.getValue().taskCategoryState.indexOf(categoryState);
