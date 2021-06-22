@@ -50,20 +50,7 @@ export class TodoStore {
     this.updateTaskViewer({taskCategoryState :taskCategoryState, loader: false, index: 0 });
   }
 
-  getTasks(categoryId:string) {
-    let tasks :Task[] = [];
-
-    this.taskService.getTaskList().subscribe(taskList => {
-      
-      tasks.push(...Object.values(taskList).filter(item => item.categoryId == categoryId));
-      let categories = [...this.taskViewrObservable.getValue().taskCategoryState];
-      let categoryTask = categories[this.taskViewrObservable.getValue().index];
-      categoryTask.tasks = tasks;
-      this.updateTaskViewer({taskCategoryState : categories}); 
-      
-    });
-    this.getMenus();
-  }
+ 
 
   public updateTaskViewer(taskViewerP: Partial<TaskViewerState>) {
     this.taskViewrObservable.next({
@@ -151,7 +138,22 @@ addTaskCategory(newTaskCategory: TaskCategory) {
   }
 
   getSelectedTaskCategory(index : number){
-    return this.taskViewrObservable.getValue().taskCategoryState[index];
+    let taskCategoryState =  this.taskViewrObservable.getValue().taskCategoryState[index];
+    let tasks :Task[] = [];
+    let  categoryId = taskCategoryState.taskCategory.id ;
+   
+    this.taskService.getTaskList().subscribe(taskList => {
+      
+      tasks.push(...Object.values(taskList).filter(item => item.categoryId == categoryId));
+      let categories = [...this.taskViewrObservable.getValue().taskCategoryState];
+      let categoryTask = categories[this.taskViewrObservable.getValue().index];
+      categoryTask.tasks = tasks;
+      
+      this.updateTaskViewer({taskCategoryState : categories }); 
+      
+    });
+    console.log(taskCategoryState);
+    return taskCategoryState;
   }
   selectTaskCategory(categoryState: TaskCategoryState){
     const index  = this.taskViewrObservable.getValue().taskCategoryState.indexOf(categoryState);
