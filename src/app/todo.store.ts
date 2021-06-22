@@ -141,6 +141,14 @@ addTaskCategory(newTaskCategory: TaskCategory) {
   getNewTask(){
    return {...Init_Task};
   }
+
+  getSelectedTaskCategory(){
+    
+  }
+  selectTaskCategory(categoryState: TaskCategoryState){
+    const index  = this.taskViewrObservable.getValue().taskCategoryState.indexOf(categoryState);
+    this.updateTaskViewer({index});
+  }
   
  
 }

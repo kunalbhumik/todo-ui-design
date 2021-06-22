@@ -63,7 +63,7 @@
 
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
   <a mat-list-item
-    (click)="selectTaskCategory(prop == 'S' ? i : (i+5) ,categoryState.taskCategory)"
+    (click)="selectTaskCategory(categoryState)"
     *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index"
     class="nav-list-item"
   >

@@ -33,13 +33,10 @@ export class AppComponent {
     }
   }
 
-  selectTaskCategory(index: number, category: TaskCategory) {
-    this.categoryId = category.id;
-
-    this.taskStore.updateTaskViewer({
-      taskCategoryName: category.name,
-      index: index
-    });
+  selectTaskCategory(categoryState: TaskCategoryState) {
+   
+      this.taskStore.selectTaskCategory(categoryState);
+    
     
   }
 }
