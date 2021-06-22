@@ -23,14 +23,7 @@ export const INIT_TASKVIEWER_STATE = {
   loader : true,
 };
 
-export const INIT_TASKCATEGORY_STATE = {
-  taskCategory:{} as TaskCategory,
-  tasks: [] as Task[],
-  menus: [] as MenuElement[],
-  task: {} as Task,
-  status: false,
-  loader: true,
-};
+
 
 export const Init_Task = {
   categoryId: null,
@@ -49,4 +42,13 @@ export const Init_Category = {
     name: 'padding',
     color: 'gray'
   }
+
+};
+export const INIT_TASKCATEGORY_STATE = {
+  taskCategory:{...Init_Category} as TaskCategory,
+  tasks: [] as Task[],
+  menus: [] as MenuElement[],
+  task: {} as Task,
+  status: false,
+  loader: true,
 };
