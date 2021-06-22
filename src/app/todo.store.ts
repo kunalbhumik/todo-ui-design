@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { TaskService } from './task.service';
 import {
   Init_Category,
+Init_Task,
   INIT_TASKCATEGORY_STATE,
   INIT_TASKVIEWER_STATE,
   TaskCategoryState,
@@ -137,6 +138,9 @@ addTaskCategory(newTaskCategory: TaskCategory) {
   //   });
   // }
 
+  getNewTask(){
+   return {...Init_Task};
+  }
   
  
 }
