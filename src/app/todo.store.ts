@@ -9,8 +9,7 @@ import {
   TaskViewerState
 } from './task.state';
 import { TaskCategory, Task, MenuElement } from './app.model';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'

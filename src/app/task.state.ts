@@ -34,7 +34,7 @@ export const INIT_TASKCATEGORY_STATE = {
 
 export const Init_Task = {
   categoryId: null,
-  name: null,
+  name: "",
   userId: null,
   priorityId: null,
   assignedId: null,
@@ -43,7 +43,7 @@ export const Init_Task = {
 
 export const Init_Category = {
   id: null,
-  name: null,
+  name: "",
   type: 'C',
   icon: {
     name: 'padding',

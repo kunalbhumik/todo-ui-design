@@ -36,9 +36,14 @@ export class TodoListComponent implements OnChanges{
 
 
   addTask(){
-
-    this.taskStore.addTask(this.newTask);
+    if(this.newTask.name === ""){
+      alert("Blank task is not permitted!!!");
+    }
+    else{
+         this.taskStore.addTask(this.newTask);
     this.inputName.nativeElement.value = ' ';
+    }
+   
   }
 
   

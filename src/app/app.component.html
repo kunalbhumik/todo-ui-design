@@ -1,63 +1,79 @@
- 
 <ng-container *ngIf="taskViewer$ | async as taskViewer">
-  <ng-container *ngIf="taskViewer.loader; else categories" >
+  <ng-container *ngIf="taskViewer.loader; else categories">
     <mat-spinner></mat-spinner>
   </ng-container>
   <ng-template #categories>
+    <mat-drawer-container fullscreen>
+      <mat-drawer mode="side" opened>
+        <mat-nav-list>
+          <mat-list-item class="search-list-item">
+            <mat-form-field appearance="outline" class="search-form-field">
+              <mat-icon matPrefix>search</mat-icon>
+              <input
+                matInput
+                placeholder="Search"
+                class="search-input"
+                [(ngModel)]="categoryNameSearch"
+              />
+            </mat-form-field>
+          </mat-list-item>
 
-  <mat-drawer-container fullscreen>
-    <mat-drawer mode="side" opened>
-      <mat-nav-list>
-        <mat-list-item class="search-list-item">
-          <mat-form-field appearance="outline" class="search-form-field">
-            <mat-icon matPrefix>search</mat-icon>
-            <input matInput placeholder="Input" class="search-input" [(ngModel)]="categoryNameSearch" />
-          </mat-form-field>
-        </mat-list-item>
+          <ng-container
+            *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState, 'prop':'S'}"
+          >
+          </ng-container>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+          <ng-container
+            *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState, 'prop':'C'}"
+          >
+          </ng-container>
+        </mat-nav-list>
 
-        <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState, 'prop':'S'}">
-        </ng-container>
-      </mat-nav-list>
-      <mat-divider></mat-divider>
-      <mat-nav-list>
-        <ng-container *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState, 'prop':'C'}">
-        </ng-container>
+        <div class="add-category">
+          <button
+            mat-icon-button
+            class="add-button"
+            (click)="addTaskCategory()"
+          >
+            <mat-icon matPrefix>add</mat-icon>
+          </button>
 
-      </mat-nav-list>
-
-
-      <div class="add-category">
-        <button mat-icon-button class="add-button" (click)="addTaskCategory()"><mat-icon matPrefix>add</mat-icon></button>
-
-        <input matInput placeholder="New List" class="category-input" [(ngModel)]="newTaskCategory.name" #categoryName required>
-      </div>
-
-
-
-
-
-    </mat-drawer>
-    <mat-drawer-content >
-   
-      <app-todo-list  [categoryId]="taskViewer.taskCategoryState[taskViewer.index].taskCategory.id">
-       
-      </app-todo-list>
-    </mat-drawer-content>
-
-
-  </mat-drawer-container>
+          <input
+            matInput
+            placeholder="New List"
+            class="category-input"
+            [(ngModel)]="newTaskCategory.name"
+            #categoryName
+            required
+          />
+        </div>
+      </mat-drawer>
+      <mat-drawer-content>
+        <app-todo-list
+          [categoryId]="taskViewer.taskCategoryState[taskViewer.index].taskCategory.id"
+        >
+        </app-todo-list>
+      </mat-drawer-content>
+    </mat-drawer-container>
   </ng-template>
 </ng-container>
 
-
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
-  <a mat-list-item (click)="selectTaskCategory(prop == 'S' ? i : (i+5) ,categoryState.taskCategory)" *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index" class="nav-list-item">
-    <mat-icon matPrefix mat-list-icon [ngStyle]="{'color':categoryState.taskCategory.icon.color}">
+  <a
+    mat-list-item
+    (click)="selectTaskCategory(prop == 'S' ? i : (i+5) ,categoryState.taskCategory)"
+    *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index"
+    class="nav-list-item"
+  >
+    <mat-icon
+      matPrefix
+      mat-list-icon
+      [ngStyle]="{'color':categoryState.taskCategory.icon.color}"
+    >
       {{categoryState.taskCategory.icon.name}}
     </mat-icon>
     <h4 mat-line>{{categoryState.taskCategory.name}}</h4>
-
-
-
   </a>
 </ng-template>
