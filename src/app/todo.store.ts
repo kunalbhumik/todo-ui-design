@@ -21,7 +21,7 @@ export class TodoStore {
   taskViewer$ = this.taskViewrObservable.asObservable();
   constructor(private taskService: TaskService) {
     this.getTaskCategoryViewer();
-    //this.getTaskViewer();
+    
     this.getMenus();
   }
   taskCategoryState: TaskCategoryState[] = [];
@@ -36,13 +36,7 @@ export class TodoStore {
       });
     });
 
-    /*let menuList: MenuElement[] = [];
-
-    this.taskService.getMenuList().subscribe(menus => {
-      menuList = menus;
-       this.updateTaskViewer({ menus: menuList });
-      
-    });*/
+    
 
     this.updateTaskViewer({taskCategoryState :taskCategoryState, loader: false, index: 0 });
   }
@@ -132,11 +126,7 @@ addTaskCategory(newTaskCategory: TaskCategory) {
       });
     });
   }
-  selectTaskCategory(categoryId : string) {
-    this.updateTaskViewer({ index });
-    this.getTasks(categoryId);
-
-  }
+  
 
   // change(event) {
     

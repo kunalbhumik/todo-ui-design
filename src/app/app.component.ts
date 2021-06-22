@@ -15,7 +15,7 @@ import {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('categoryName') inputName;
+  
   categoryNameSearch: string = '';
   categoryId: string;
   taskViewer$ = this.taskStore.taskViewer$;
@@ -29,7 +29,7 @@ export class AppComponent {
     } else {
       this.taskStore.addTaskCategory(this.newTaskCategory);
       this.newTaskCategory = { ...Init_Category };
-      this.inputName.nativeElement.value = ' ';
+      this.newTaskCategory.name = "";
     }
   }
 
@@ -40,6 +40,6 @@ export class AppComponent {
       taskCategoryName: category.name,
       index: index
     });
-    //this.taskStore.selectTaskCategory(categoryId);
+    
   }
 }
