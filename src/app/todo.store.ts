@@ -157,6 +157,10 @@ addTaskCategory(newTaskCategory: TaskCategory) {
     const index  = this.taskViewrObservable.getValue().taskCategoryState.indexOf(categoryState);
     this.updateTaskViewer({index});
   }
+
+  getNewTaskCategoryState(){
+    return { ...INIT_TASKCATEGORY_STATE};
+  }
   
  
 }

@@ -1,9 +1,9 @@
-<ng-container *ngIf="taskViewer$ | async as taskViewer">
-<div>
+
+
   <mat-toolbar>
 
-    <mat-toolbar-row>
-      <span>{{taskViewer.taskCategoryState[taskViewer.index].taskCategory.name}}</span>
+    
+      <span>{{taskCategoryState.taskCategory.name}}</span>
       <span class="spacer"></span>
       <button mat-button class="icon-button">
         <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
@@ -11,7 +11,7 @@
       <button mat-button [matMenuTriggerFor]="menuList" class="icon-button"  >
         <mat-icon class="example-icon" aria-hidden="false">more_horiz</mat-icon>
       </button>
-    </mat-toolbar-row>
+   
 
 
 
@@ -19,17 +19,17 @@
   </mat-toolbar>
   <mat-menu #menuList="matMenu">
 
-    <ng-container *ngFor="let menu of taskViewer.taskCategoryState[taskViewer.index].menus">
+    <ng-container *ngFor="let menu of taskCategoryState?.menus">
       <button mat-menu-item >
         <mat-icon>{{menu.icon}}</mat-icon>{{menu.name}}</button>
     </ng-container>
 
 
   </mat-menu>
-</div>
 
-<mat-selection-list *ngIf="taskViewer.taskCategoryState[taskViewer.index]" (selectionChange)="change($event)" class="test">
-  <ng-container *ngFor="let task of taskViewer.taskCategoryState[taskViewer.index].tasks">
+
+<mat-selection-list *ngIf="taskCategoryState" (selectionChange)="change($event)" class="test">
+  <ng-container *ngFor="let task of taskCategoryState?.tasks">
 
     <mat-list-option  [checkboxPosition]="before" [value]="task.name">
       <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
@@ -50,4 +50,4 @@
     </mat-form-field>
 
  </div>
-</ng-container>
+
