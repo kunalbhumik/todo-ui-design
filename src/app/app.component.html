@@ -45,6 +45,7 @@
             placeholder="New List"
             class="category-input"
             [(ngModel)]="newTaskCategory.name"
+            maxlength="20"
             #categoryName
             required
           />
@@ -61,8 +62,7 @@
 </ng-container>
 
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
-  <a
-    mat-list-item
+  <a mat-list-item
     (click)="selectTaskCategory(prop == 'S' ? i : (i+5) ,categoryState.taskCategory)"
     *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index"
     class="nav-list-item"
