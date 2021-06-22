@@ -1,6 +1,6 @@
 
 
-  <mat-toolbar>
+  <mat-toolbar *ngIf="taskCategoryState">
 
     
       <span>{{taskCategoryState.taskCategory.name}}</span>

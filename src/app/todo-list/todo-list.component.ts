@@ -47,7 +47,7 @@ export class TodoListComponent implements OnChanges {
     this.taskStore.getTasks(categoryId);
   }
   ngOnChanges(changes: SimpleChanges) {
-    //this.getTasks(changes.categoryId.currentValue);
+    this.getTasks(changes.categoryId.currentValue);
     this.taskCategoryState = this.taskStore.getSelectedTaskCategory(this.index);
   }
 
