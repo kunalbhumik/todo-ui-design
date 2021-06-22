@@ -21,7 +21,7 @@ export class AppComponent {
 
   addTaskCategory() {
     this.taskStore.addTaskCategory(this.newTaskCategory);
-    this.newTaskCategory = Init_Category;
+    this.newTaskCategory = {...Init_Category};
      this.inputName.nativeElement.value = ' ';
   }
 
