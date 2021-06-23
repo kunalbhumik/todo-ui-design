@@ -45,16 +45,6 @@ export class TodoStore {
       });
        this.updateTaskViewer({taskCategoryState :taskCategoryStates, loader: false, index: 0 });
     });
-
-    
-
-   // menus = this.getMenus();
-    //console.log(menus);
-    //taskCategoryStates[0].menus = menus;
-   //let taskCategoryState = taskCategoryStates[0];
-   //taskCategoryState.menus = menus;
-
-   
   }
 
  
@@ -133,14 +123,18 @@ addTaskCategory(newTaskCategory: TaskCategory) {
   }
   
 
-  // change(event) {
+  toggleTaskStatus(taskName:string,index:number) {
     
-  //   this.taskViewrObservable.value.taskList.forEach(item => {
-  //     if (item.name === event.option.value) {
-  //       item.status = !item.status;
-  //     }
-  //   });
-  // }
+    // this.taskViewrObservable.value.taskList.forEach(item => {
+    //   if (item.name === event.option.value) {
+    //     item.status = !item.status;
+    //   }
+    // });
+
+    let taskCategoryState :TaskCategoryState = this.taskViewrObservable.getValue().taskCategoryState[index];
+    
+    console.log(taskCategoryState); 
+  }
 
   getNewTask(){
    return {...Init_Task};

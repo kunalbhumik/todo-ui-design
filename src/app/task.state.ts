@@ -12,7 +12,7 @@ export interface TaskCategoryState {
   tasks: Task[];
   menus: MenuElement[];
   task: Task;
-  status: boolean;
+  index: number;
   loader: boolean;
 }
 
@@ -31,7 +31,7 @@ export const Init_Task = {
   userId: null,
   priorityId: null,
   assignedId: null,
-  status: true
+  index: -1,
 };
 
 export const Init_Category = {

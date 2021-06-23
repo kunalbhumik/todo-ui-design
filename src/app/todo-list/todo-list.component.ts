@@ -39,11 +39,12 @@ export class TodoListComponent implements OnChanges {
       alert('Blank task is not permitted!!!');
     } else {
       this.taskStore.addTask(this.newTask);
+      this.newTask = { ...Init_Task };
     }
   }
 
-  change(event) {
-    this.taskStore.change(event);
+  toggleTaskStatus(event) {
+    this.taskStore.toggleTaskStatus(event.option.value,this.index);
   }
 
   

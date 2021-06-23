@@ -28,8 +28,8 @@
   </mat-menu>
 
 
-<mat-selection-list *ngIf="taskCategoryState" (selectionChange)="change($event)" class="test">
-  <ng-container *ngFor="let task of taskCategoryState?.tasks">
+<mat-selection-list *ngIf="taskCategoryState" (selectionChange)="toggleTaskStatus($event)" class="test">
+  <ng-container *ngFor="let task of taskCategoryState?.tasks",let i = index>
 
     <mat-list-option  [checkboxPosition]="before" [value]="task.name">
       <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
