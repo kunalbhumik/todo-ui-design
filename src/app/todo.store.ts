@@ -123,7 +123,7 @@ addTaskCategory(newTaskCategory: TaskCategory) {
   }
   
 
-  toggleTaskStatus(taskName:string,index:number) {
+  toggleTaskStatus(taskName:Task,index:number) {
     
     // this.taskViewrObservable.value.taskList.forEach(item => {
     //   if (item.name === event.option.value) {
@@ -132,7 +132,7 @@ addTaskCategory(newTaskCategory: TaskCategory) {
     // });
 
     let taskCategoryState :TaskCategoryState = this.taskViewrObservable.getValue().taskCategoryState[index];
-    
+
     console.log(taskCategoryState); 
   }
 

@@ -12,8 +12,8 @@ export interface TaskCategoryState {
   tasks: Task[];
   menus: MenuElement[];
   task: Task;
-  index: number;
   loader: boolean;
+  status:boolean;
 }
 
 export const INIT_TASKVIEWER_STATE = {
@@ -31,7 +31,8 @@ export const Init_Task = {
   userId: null,
   priorityId: null,
   assignedId: null,
-  index: -1,
+   status:false
+
 };
 
 export const Init_Category = {
