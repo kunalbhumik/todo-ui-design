@@ -29,7 +29,7 @@ export class TodoStore {
   constructor(private taskService: TaskService) {
     this.getTaskCategoryViewer();
     
-    this.getMenus();
+    //this.getMenus();
   }
   
 
@@ -47,8 +47,9 @@ export class TodoStore {
 
     let menus : MenuElement[];
 
-    menus = this.getMenus();
-    taskCategoryStates[0].menus = menus;
+   // menus = this.getMenus();
+    //console.log(menus);
+    //taskCategoryStates[0].menus = menus;
    //let taskCategoryState = taskCategoryStates[0];
    //taskCategoryState.menus = menus;
 
@@ -66,18 +67,20 @@ export class TodoStore {
 
   getMenus(){
     
-      let menuList : MenuElement[];
+      var menuList : MenuElement[] = [];
      this.taskService.getMenuList().subscribe(menus => {
-      menus = menus;
-      console.log(menus);
+      
+      
        let categories = [...this.taskViewrObservable.getValue().taskCategoryState];
       let categoryTask = categories[this.taskViewrObservable.getValue().index];
       categoryTask.menus = menus;
       
       menuList  = menus;
+      console.log(menuList)  
        
-       //this.updateTaskViewer({taskCategoryState : categories}); 
+       this.updateTaskViewer({taskCategoryState : categories}); 
     });
+    console.log(menuList)
     return menuList; 
   }
 
@@ -153,14 +156,17 @@ addTaskCategory(newTaskCategory: TaskCategory) {
       let categories = [...this.taskViewrObservable.getValue().taskCategoryState];
       let categoryTask = categories[this.taskViewrObservable.getValue().index];
       categoryTask.tasks = tasks;
+     
+      let menus : MenuElement[] = this.getMenus();
+      
 
-     let menus : MenuElement[] = this.getMenus();
       categoryTask.menus = menus;
       
+      console.log(categoryTask.tasks);
       this.updateTaskViewer({taskCategoryState : categories}); 
       
     });
-    console.log(taskCategoryState);
+   
     return taskCategoryState;
   }
   selectTaskCategory(categoryState: TaskCategoryState){

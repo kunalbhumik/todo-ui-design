@@ -21,7 +21,7 @@ import { TodoStore } from '../todo.store';
 })
 export class TodoListComponent implements OnChanges {
   @Input() 
-  index : number ;
+  index : number = 0;
 
   
   newTask: Task = this.taskStore.getNewTask();
@@ -29,7 +29,11 @@ export class TodoListComponent implements OnChanges {
 
   constructor(private taskStore: TodoStore) {
     this.taskCategoryState =  this.taskStore.getNewTaskCategoryState();
+    this.taskCategoryState = this.taskStore.getSelectedTaskCategory(this.index);
+    console.log(this.taskCategoryState);
   }
+
+  
 
   addTask() {
     if (this.newTask.name === '' && this.newTask.name.length > 200) {
@@ -47,6 +51,7 @@ export class TodoListComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     
     this.taskCategoryState = this.taskStore.getSelectedTaskCategory(this.index);
+    console.log(this.taskCategoryState);
   }
 
 
