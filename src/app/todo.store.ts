@@ -35,19 +35,24 @@ export class TodoStore {
 
   taskCategoryState: TaskCategoryState[] = [];
   getTaskCategoryViewer() {
-    let taskCategoryState: TaskCategoryState[] = [];
+    let taskCategoryStates: TaskCategoryState[] = [];
 
     this.taskService.getTaskCategories().subscribe(tCategories => {
       Object.entries(tCategories).forEach(e => {
         let taskCategory = { id: e[0], ...e[1] };
-        taskCategoryState.push({ ...INIT_TASKCATEGORY_STATE, taskCategory });
+        taskCategoryStates.push({ ...INIT_TASKCATEGORY_STATE, taskCategory });
          
       });
     });
 
-    
+    let menus : MenuElement[];
 
-    this.updateTaskViewer({taskCategoryState :taskCategoryState, loader: false, index: 0 });
+    menus = this.getMenus();
+    taskCategoryStates[0].menus = menus;
+   //let taskCategoryState = taskCategoryStates[0];
+   //taskCategoryState.menus = menus;
+
+    this.updateTaskViewer({taskCategoryState :taskCategoryStates, loader: false, index: -1 });
   }
 
  
@@ -150,8 +155,9 @@ addTaskCategory(newTaskCategory: TaskCategory) {
       categoryTask.tasks = tasks;
 
      let menus : MenuElement[] = this.getMenus();
-      console.log(menus);
-      this.updateTaskViewer({taskCategoryState : categories }); 
+      categoryTask.menus = menus;
+      
+      this.updateTaskViewer({taskCategoryState : categories}); 
       
     });
     console.log(taskCategoryState);
