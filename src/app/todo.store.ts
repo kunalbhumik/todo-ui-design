@@ -43,9 +43,10 @@ export class TodoStore {
         taskCategoryStates.push({ ...INIT_TASKCATEGORY_STATE, taskCategory });
          
       });
+       this.updateTaskViewer({taskCategoryState :taskCategoryStates, loader: false, index: 0 });
     });
 
-    let menus : MenuElement[];
+    
 
    // menus = this.getMenus();
     //console.log(menus);
@@ -53,7 +54,7 @@ export class TodoStore {
    //let taskCategoryState = taskCategoryStates[0];
    //taskCategoryState.menus = menus;
 
-    this.updateTaskViewer({taskCategoryState :taskCategoryStates, loader: false, index: -1 });
+   
   }
 
  
@@ -166,7 +167,7 @@ addTaskCategory(newTaskCategory: TaskCategory) {
       this.updateTaskViewer({taskCategoryState : categories}); 
       
     });
-   
+    
     return taskCategoryState;
   }
   selectTaskCategory(categoryState: TaskCategoryState){

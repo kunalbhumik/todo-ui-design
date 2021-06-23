@@ -29,8 +29,7 @@ export class TodoListComponent implements OnChanges {
 
   constructor(private taskStore: TodoStore) {
     this.taskCategoryState =  this.taskStore.getNewTaskCategoryState();
-    this.taskCategoryState = this.taskStore.getSelectedTaskCategory(this.index);
-    console.log(this.taskCategoryState);
+   
   }
 
   

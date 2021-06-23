@@ -52,7 +52,7 @@
         </div>
       </mat-drawer>
       <mat-drawer-content>
-        <app-todo-list
+        <app-todo-list *ngIf="!taskViewer.loader"
           [index]="taskViewer.index"
         >
         </app-todo-list>
