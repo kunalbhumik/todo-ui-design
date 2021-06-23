@@ -67,11 +67,11 @@ export class TodoStore {
       categoryTask.menus = menus;
       
       menuList  = menus;
-      console.log(menuList)  
+     
        
        this.updateTaskViewer({taskCategoryState : categories}); 
     });
-    console.log(menuList)
+    
     return menuList; 
   }
 
@@ -123,7 +123,7 @@ addTaskCategory(newTaskCategory: TaskCategory) {
   }
   
 
-  toggleTaskStatus(taskName:Task,index:number) {
+  toggleTaskStatus(task:Task,index:number) {
     
     // this.taskViewrObservable.value.taskList.forEach(item => {
     //   if (item.name === event.option.value) {
@@ -132,8 +132,8 @@ addTaskCategory(newTaskCategory: TaskCategory) {
     // });
 
     let taskCategoryState :TaskCategoryState = this.taskViewrObservable.getValue().taskCategoryState[index];
-
-    console.log(taskCategoryState); 
+    
+    
   }
 
   getNewTask(){
@@ -157,7 +157,7 @@ addTaskCategory(newTaskCategory: TaskCategory) {
 
       categoryTask.menus = menus;
       
-      console.log(categoryTask.tasks);
+     
       this.updateTaskViewer({taskCategoryState : categories}); 
       
     });

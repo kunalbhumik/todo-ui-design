@@ -23,7 +23,7 @@ export class TodoListComponent implements OnChanges {
   @Input() 
   index : number = 0;
 
-  
+  selectedTask : Task;
   newTask: Task = this.taskStore.getNewTask();
   taskCategoryState: TaskCategoryState ;
 
@@ -44,14 +44,20 @@ export class TodoListComponent implements OnChanges {
   }
 
   toggleTaskStatus(event) {
-    this.taskStore.toggleTaskStatus(event.option.value,this.index);
+   
+   let task : Task = event.option.value;
+   this.taskCategoryState.tasks.forEach(item =>{
+     if(task.name == item.name){
+       item.status = !item.status;
+     }
+   })
   }
 
   
   ngOnChanges(changes: SimpleChanges) {
     
     this.taskCategoryState = this.taskStore.getSelectedTaskCategory(this.index);
-    console.log(this.taskCategoryState);
+   
   }
 
 

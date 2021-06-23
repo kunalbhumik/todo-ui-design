@@ -50,6 +50,6 @@ export const INIT_TASKCATEGORY_STATE = {
   tasks: [] as Task[],
   menus: [] as MenuElement[],
   task: {} as Task,
-  status: false,
+  status: true,
   loader: true,
 };
