@@ -46,6 +46,7 @@ export class TodoListComponent implements OnChanges {
   toggleTaskStatus(event) {
    
    let task : Task = event.option.value;
+   console.log(task);
    this.taskCategoryState.tasks.forEach(item =>{
      if(task.name == item.name){
        item.status = !item.status;

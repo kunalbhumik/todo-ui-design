@@ -31,7 +31,7 @@ export const Init_Task = {
   userId: null,
   priorityId: null,
   assignedId: null,
-   status:false
+   status:true
 
 };
 

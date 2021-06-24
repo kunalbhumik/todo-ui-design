@@ -64,7 +64,7 @@
 <ng-template #taskTemplate let-taskCategories="taskCategories" let-prop="prop">
   <a mat-list-item
     (click)="selectTaskCategory(categoryState)"
-    *ngFor="let categoryState of taskCategories  | prop:prop ; let i=index"
+    *ngFor="let categoryState of taskCategories  | prop:prop | filter :  categoryNameSearch"
     class="nav-list-item"
   >
     <mat-icon

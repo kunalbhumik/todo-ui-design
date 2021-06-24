@@ -123,19 +123,7 @@ addTaskCategory(newTaskCategory: TaskCategory) {
   }
   
 
-  toggleTaskStatus(task:Task,index:number) {
-    
-    // this.taskViewrObservable.value.taskList.forEach(item => {
-    //   if (item.name === event.option.value) {
-    //     item.status = !item.status;
-    //   }
-    // });
-
-    let taskCategoryState :TaskCategoryState = this.taskViewrObservable.getValue().taskCategoryState[index];
-    
-    
-  }
-
+  
   getNewTask(){
    return {...Init_Task};
   }

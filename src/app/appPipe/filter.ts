@@ -8,7 +8,7 @@ import { TaskCategory } from '../app.model';
 export class FilterPipe implements PipeTransform{
 
   
-    transform(items: TaskCategory[], filter: string): any {
+    transform(items: any, filter: string): any {
         return items.filter(function(search){
           return search.name.indexOf(filter) > -1;
         })
