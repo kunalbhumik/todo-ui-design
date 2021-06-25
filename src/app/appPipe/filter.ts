@@ -1,5 +1,6 @@
 import {Pipe,PipeTransform} from '@angular/core'
 import { TaskCategory } from '../app.model';
+import { TaskCategoryState } from '../task.state';
 
 @Pipe({
   name:'filter'
@@ -8,11 +9,11 @@ import { TaskCategory } from '../app.model';
 export class FilterPipe implements PipeTransform{
 
   
-    transform(items: any, filter: string): any {
-        return items.filter(function(search){
-          return search.name.indexOf(filter) > -1;
-        })
-        
-       // return items.filter(item =>item.name && item.name.indexOf(filter) > -1  );
+    transform(items:TaskCategoryState, filter: any): any {
+        // return items.filter(function(search){
+        //   return search.name.indexOf(filter) > -1;
+        // })
+        console.log(items);
+        return items.filter(item =>item.taskCategory.name && item.taskCategory.name.indexOf(filter) > -1  );
     }
 }
