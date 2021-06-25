@@ -35,7 +35,7 @@ export class TodoListComponent implements OnChanges {
   
 
   addTask() {
-    if (this.newTask.name === '' && this.newTask.name.length > 200) {
+    if (this.newTask.name === '') {
       alert('Blank task is not permitted!!!');
     } else {
       this.taskStore.addTask(this.newTask);
@@ -43,17 +43,26 @@ export class TodoListComponent implements OnChanges {
     }
   }
 
+  // toggleTaskStatus(event) {
+   
+  //  let task : Task = event.option.value;
+  //  console.log(task);
+  //  this.taskCategoryState.tasks.forEach(item =>{
+  //    if(task.name == item.name){
+  //      item.status = !item.status;
+  //    }
+  //  })
+  //  task = null;
+  //  let index = this.taskCategoryState.tasks.indexOf(task);
+  //  this.taskCategoryState.tasks.splice(index,1);
+  // }
+
   toggleTaskStatus(event) {
    
    let task : Task = event.option.value;
-   console.log(task);
-   this.taskCategoryState.tasks.forEach(item =>{
-     if(task.name == item.name){
-       item.status = !item.status;
-     }
-   })
+   let index = this.taskCategoryState.tasks.indexOf(task);
+   this.taskCategoryState.tasks.splice(index,1);
   }
-
   
   ngOnChanges(changes: SimpleChanges) {
     

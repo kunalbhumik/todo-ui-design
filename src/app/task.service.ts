@@ -15,12 +15,12 @@ export class TaskService {
   getTaskCategories() {
     //return this.http.get<TaskCategory[]>('assets/task-categories.json');
    
-  return this.http.get('https://test-ba90f-default-rtdb.firebaseio.com/categories.json') ;
+  return this.http.get('https://test1-d85a6-default-rtdb.firebaseio.com/categories.json') ;
   
   }
 
   getTaskList() {
-    return this.http.get<Task[]>('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json');
+    return this.http.get<Task[]>('https://test1-d85a6-default-rtdb.firebaseio.com/tasks.json');
   }
 
   getMenuList() {
@@ -28,12 +28,12 @@ export class TaskService {
   }
   
   postTask(task:Task){
-    console.log(task);
-     return this.http.post<Task>('https://test-ba90f-default-rtdb.firebaseio.com/tasks.json',task);
+    
+     return this.http.post<Task>('https://test1-d85a6-default-rtdb.firebaseio.com/tasks.json',task);
   }
 
   postTaskCategory(taskCategory:TaskCategory){
-    return this.http.post<TaskCategory>('https://test-ba90f-default-rtdb.firebaseio.com/categories.json',taskCategory);
+    return this.http.post<TaskCategory>('https://test1-d85a6-default-rtdb.firebaseio.com/categories.json',taskCategory);
   }
 
   getBlankTask() {
