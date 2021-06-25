@@ -5,7 +5,7 @@
   <ng-template #categories>
     <mat-drawer-container fullscreen>
       <mat-drawer mode="side" opened>
-        <mat-nav-list>
+        <mat-nav-list class="standard-nav-list">
           <mat-list-item class="search-list-item">
             <mat-form-field appearance="outline" class="search-form-field">
               <mat-icon matPrefix>search</mat-icon>
@@ -24,7 +24,7 @@
           </ng-container>
         </mat-nav-list>
         <mat-divider></mat-divider>
-        <mat-nav-list>
+        <mat-nav-list class="custom-nav-list">
           <ng-container
             *ngTemplateOutlet="taskTemplate;context:{'taskCategories':taskViewer.taskCategoryState, 'prop':'C'}"
           >

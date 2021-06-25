@@ -6,6 +6,7 @@ mat-drawer {
   width: 25%;
   padding: 0px;
   height: calc(100% - 40px);
+  overflow-y:hidden !important;
 }
 
 .search-form-field {
@@ -71,4 +72,19 @@ mat-drawer-content {
 }
 :host ::ng-deep input::-webkit-input-placeholder {
   color: black !important;
+}
+
+.custom-nav-list{
+  overflow-y: auto !important ;
+  height: 65%;
+
+}
+.standard-nav-list{
+  height:35%;
+}
+
+::ng-deep .mat-drawer-inner-container {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
 }
