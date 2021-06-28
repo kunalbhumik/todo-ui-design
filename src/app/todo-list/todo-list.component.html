@@ -1,6 +1,6 @@
 
 
-  <mat-toolbar *ngIf="taskCategoryState">
+  <mat-toolbar *ngIf="taskCategoryState" class="category-name-header">
 
     
       <span>{{taskCategoryState.taskCategory.name}}</span>
@@ -31,15 +31,30 @@
 <mat-selection-list *ngIf="taskCategoryState" (selectionChange)="toggleTaskStatus($event)" class="test">
   <ng-container *ngFor="let task of taskCategoryState?.tasks";let i = index>
 
-    <mat-list-option  [checkboxPosition]="before" [value]="task">
+    <mat-list-option  [checkboxPosition]="before" [value]="task" *ngIf="task.status === true">
       <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
         {{task.name}}  
       </div>
     </mat-list-option>
-    <mat-list-option [checkboxPosition]="before" [value]="task" *ngIf="task.status === 'false'">
-          {{task.name}}
+
+
+  </ng-container>
+</mat-selection-list>
+<mat-toolbar class="completed-tasks-toolbar">
+  Completed Tasks
+</mat-toolbar>
+<mat-selection-list *ngIf="taskCategoryState" (selectionChange)="toggleTaskStatus($event)" class="test">
+  
+  <ng-container *ngFor="let task of taskCategoryState?.tasks";let i = index>
+    
+
+    <mat-list-option  [checkboxPosition]="before" [value]="task" *ngIf="task.status === false" [selected]="task.checked">
+      <div [ngStyle]="{'text-decoration': !task.status ? 'line-through' : '' }">
+        {{task.name}}  
+      </div>
     </mat-list-option>
 
+    
   </ng-container>
 </mat-selection-list>
 

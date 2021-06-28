@@ -1,9 +1,4 @@
-mat-toolbar {
-  height: 100px;
-  font-size: 35px;
-  background-color: #ba68c8;
-  color: white;
-}
+
 
 .icon-button {
   width: 64px;
@@ -137,4 +132,15 @@ mat-list-option {
 
   /*background-color: #9C27B0;*/
   border-radius: 5px;
+}
+
+.category-name-header{
+  height: 100px;
+  font-size: 35px;
+  background-color: #ba68c8;
+  color: white;
+}
+.completed-tasks-toolbar{
+  height: 35px;
+  color: white;
 }

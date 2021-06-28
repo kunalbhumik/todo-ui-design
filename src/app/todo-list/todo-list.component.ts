@@ -63,7 +63,7 @@ export class TodoListComponent implements OnChanges {
    let index = this.taskCategoryState.tasks.indexOf(task);
    this.taskCategoryState.tasks[index].status = !this.taskCategoryState.tasks[index].status;
    console.log(this.taskCategoryState.tasks[index].status);
-   this.taskCategoryState.tasks.splice(index,1);
+   //this.taskCategoryState.tasks.splice(index,1);
   }
   
   ngOnChanges(changes: SimpleChanges) {
