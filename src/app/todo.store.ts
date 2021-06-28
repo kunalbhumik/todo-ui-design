@@ -160,6 +160,19 @@ addTaskCategory(newTaskCategory: TaskCategory) {
   getNewTaskCategoryState(){
     return { ...INIT_TASKCATEGORY_STATE};
   }
+
+  deleteCategory(taskCategoryState : TaskCategoryState){
+   let  taskCategoryStates : TaskCategoryState[] = [];
+   taskCategoryStates = [...this.taskViewrObservable.getValue().taskCategoryState];
+   console.log(taskCategoryStates);
+   let index = taskCategoryStates.indexOf(taskCategoryState);
+   console.log(index);
+
+   //this.taskCategoryState.tasks.splice(index,1);
+   taskCategoryStates.splice(index,1);
+   console.log(taskCategoryStates);
+   this.updateTaskViewer({taskCategoryState :taskCategoryStates})
+  }
   
  
 }

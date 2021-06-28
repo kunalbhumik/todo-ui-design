@@ -8,6 +8,7 @@ import {
   INIT_TASKCATEGORY_STATE,
   TaskCategoryState
 } from './task.state';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'my-app',
@@ -38,5 +39,11 @@ export class AppComponent {
       this.taskStore.selectTaskCategory(categoryState);
     
     
+  }
+
+  deleteCategory(categoryState:TaskCategoryState){
+    if(confirm("Are you sure to delete: "+categoryState.taskCategory.name)) {
+    this.taskStore.deleteCategory(categoryState);
+  }
   }
 }

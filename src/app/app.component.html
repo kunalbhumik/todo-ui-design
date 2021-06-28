@@ -75,5 +75,8 @@
       {{categoryState.taskCategory.icon.name}}
     </mat-icon>
     <h4 mat-line>{{categoryState.taskCategory.name}}</h4>
+    <a mat-button class="delete-category" (click)="deleteCategory(categoryState)">
+      <mat-icon>delete_outline</mat-icon>
+    </a>
   </a>
 </ng-template>
