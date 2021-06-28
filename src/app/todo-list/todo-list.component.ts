@@ -61,6 +61,8 @@ export class TodoListComponent implements OnChanges {
    
    let task : Task = event.option.value;
    let index = this.taskCategoryState.tasks.indexOf(task);
+   this.taskCategoryState.tasks[index].status = !this.taskCategoryState.tasks[index].status;
+   console.log(this.taskCategoryState.tasks[index].status);
    this.taskCategoryState.tasks.splice(index,1);
   }
   
