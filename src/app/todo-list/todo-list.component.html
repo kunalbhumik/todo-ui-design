@@ -36,7 +36,7 @@
         {{task.name}}  
       </div>
     </mat-list-option>
-    <mat-list-option [checkboxPosition]="before" [value]="task" *ngIf="task.status == false">
+    <mat-list-option [checkboxPosition]="before" [value]="task" *ngIf="task.status === 'false'">
           {{task.name}}
     </mat-list-option>
 
